@@ -1,0 +1,38 @@
+lockVersion: 2.0.0
+id: f973dc21-d1bd-4e48-971a-a3918272099b
+management:
+  docChecksum: 3851061474ad0b751f638e537d98fd25
+  docVersion: "1"
+  speakeasyVersion: internal
+  generationVersion: 2.275.2
+  releaseVersion: 0.0.1
+  configChecksum: 5be955b039369e57b218570e7f64d06f
+features:
+  python:
+    constsAndDefaults: 0.1.2
+    core: 4.5.0
+    flattening: 2.81.1
+    globalServerURLs: 2.82.1
+generatedFiles:
+  - src/shippo/sdkconfiguration.py
+  - src/shippo/sdk.py
+  - pylintrc
+  - setup.py
+  - src/shippo/__init__.py
+  - src/shippo/utils/__init__.py
+  - src/shippo/utils/retries.py
+  - src/shippo/utils/utils.py
+  - src/shippo/models/errors/sdkerror.py
+  - tests/helpers.py
+  - src/shippo/models/operations/example.py
+  - src/shippo/models/__init__.py
+  - src/shippo/models/errors/__init__.py
+  - src/shippo/models/operations/__init__.py
+  - docs/models/operations/examplerequest.md
+  - docs/models/operations/exampleresponse.md
+  - docs/sdks/shippo/README.md
+  - USAGE.md
+  - .gitattributes
+  - src/shippo/_hooks/sdkhooks.py
+  - src/shippo/_hooks/types.py
+  - src/shippo/_hooks/__init__.py
