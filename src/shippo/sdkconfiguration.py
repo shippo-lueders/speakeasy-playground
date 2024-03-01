@@ -6,24 +6,26 @@ from ._hooks import SDKHooks
 from .utils import utils
 from .utils.retries import RetryConfig
 from dataclasses import dataclass
-from typing import Dict, Tuple
+from shippo.models import components
+from typing import Callable, Dict, Tuple, Union
 
 
 SERVERS = [
-    'https://example.com',
+    'https://api.goshippo.com',
 ]
 """Contains the list of servers available to the SDK"""
 
 @dataclass
 class SDKConfiguration:
     client: requests_http.Session
+    security: Union[components.Security,Callable[[], components.Security]] = None
     server_url: str = ''
     server_idx: int = 0
     language: str = 'python'
-    openapi_doc_version: str = '1'
-    sdk_version: str = '0.0.1'
-    gen_version: str = '2.275.2'
-    user_agent: str = 'speakeasy-sdk/python 0.0.1 2.275.2 1 shippo-api-client'
+    openapi_doc_version: str = '2018-02-08'
+    sdk_version: str = '0.1.0'
+    gen_version: str = '2.276.1'
+    user_agent: str = 'speakeasy-sdk/python 0.1.0 2.276.1 2018-02-08 shippo-api-client'
     retry_config: RetryConfig = None
     _hooks: SDKHooks = None
 

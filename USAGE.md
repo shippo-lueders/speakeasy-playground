@@ -2,12 +2,14 @@
 ```python
 import shippo
 
-s = shippo.Shippo()
+s = shippo.Shippo(
+    api_key_header="<YOUR_API_KEY_HERE>",
+)
 
 
-res = s.example(results_per_page=904965)
+res = s.addresses.list_addresses(page=1, results=25, shippo_api_version='<value>')
 
-if res.status_code == 200:
+if res.address_list_wrapper is not None:
     # handle response
     pass
 ```
