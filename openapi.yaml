@@ -10,20 +10,65 @@ paths:
   "/example":
     get:
       operationId: Example
-      parameters:
-        - $ref: "#/components/parameters/ResultsPerPageQueryParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LiveRateCreateRequest'
       responses:
         '200':
           description: example
+  "/example-two":
+    get:
+      operationId: ExampleTwo
+      responses:
+        '200':
+          $ref: '#/components/responses/exampleTwoResponse'
 components:
-  parameters:
-    ResultsPerPageQueryParam:
-      description: The number of results to return per page (max 100)
-      in: query
-      name: results_per_page
-      schema:
-        type: integer
-        format: int64
-        maximum: 100
-        default: 25
-  responses: {}
+  responses:
+    exampleTwoResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Shipment'
+  schemas:
+    LiveRateCreateRequest:
+      type: object
+      description: The rate request
+      properties:
+        address_from:
+          oneOf:
+            - type: string
+              description: |-
+                Object ID for an existing <a href="#tag/Addresses">Address</a>
+            - $ref: '#/components/schemas/AddressComplete'
+    Shipment:
+      type: object
+      description: The shipment
+      properties:
+        address_from:
+          $ref: '#/components/schemas/AddressFrom'
+    AddressFrom:
+      type: object
+      description: |-
+        <a href="#tag/Addresses">Address</a> object of the sender / seller. Will be returned expanded by default.
+      allOf:
+        - $ref: '#/components/schemas/Address'
+    Address:
+      type: object
+      description: The address
+      properties:
+        city:
+          description: |-
+            Name of a city.
+          example: 'San Francisco'
+          type: string
+    AddressComplete:
+      type: object
+      description: The complete address
+      properties:
+        state:
+          description: |-
+            Name of a state.
+          type: string

@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: 3851061474ad0b751f638e537d98fd25
+  docChecksum: f4ba214a3f7db38aeba8b02cbe7c3c81
   docVersion: "1"
   speakeasyVersion: internal
-  generationVersion: 2.275.2
-  releaseVersion: 0.0.1
-  configChecksum: 5be955b039369e57b218570e7f64d06f
+  generationVersion: 2.276.1
+  releaseVersion: 0.3.3
+  configChecksum: 4ca5becb19cd723624d5afb37cf1f8c8
 features:
   python:
-    constsAndDefaults: 0.1.2
     core: 4.5.0
-    flattening: 2.81.1
+    getRequestBodies: 2.81.1
     globalServerURLs: 2.82.1
+    unions: 2.82.6
 generatedFiles:
   - src/shippo/sdkconfiguration.py
   - src/shippo/sdk.py
@@ -25,11 +25,22 @@ generatedFiles:
   - src/shippo/models/errors/sdkerror.py
   - tests/helpers.py
   - src/shippo/models/operations/example.py
+  - src/shippo/models/operations/exampletwo.py
+  - src/shippo/models/components/liveratecreaterequest.py
+  - src/shippo/models/components/addresscomplete.py
+  - src/shippo/models/components/shipment.py
+  - src/shippo/models/components/addressfrom.py
   - src/shippo/models/__init__.py
   - src/shippo/models/errors/__init__.py
   - src/shippo/models/operations/__init__.py
-  - docs/models/operations/examplerequest.md
+  - src/shippo/models/components/__init__.py
   - docs/models/operations/exampleresponse.md
+  - docs/models/operations/exampletworesponse.md
+  - docs/models/components/liveratecreaterequestaddressfrom.md
+  - docs/models/components/liveratecreaterequest.md
+  - docs/models/components/addresscomplete.md
+  - docs/models/components/shipment.md
+  - docs/models/components/addressfrom.md
   - docs/sdks/shippo/README.md
   - USAGE.md
   - .gitattributes

@@ -1,11 +1,13 @@
 <!-- Start SDK Example Usage [usage] -->
 ```python
 import shippo
+from shippo.models import components
 
 s = shippo.Shippo()
 
+req = components.LiveRateCreateRequest()
 
-res = s.example(results_per_page=904965)
+res = s.example(req)
 
 if res.status_code == 200:
     # handle response

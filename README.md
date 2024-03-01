@@ -31,11 +31,13 @@ pip install git+<UNSET>.git
 
 ```python
 import shippo
+from shippo.models import components
 
 s = shippo.Shippo()
 
+req = components.LiveRateCreateRequest()
 
-res = s.example(results_per_page=904965)
+res = s.example(req)
 
 if res.status_code == 200:
     # handle response
@@ -49,6 +51,7 @@ if res.status_code == 200:
 ### [Shippo SDK](docs/sdks/shippo/README.md)
 
 * [example](docs/sdks/shippo/README.md#example)
+* [example_two](docs/sdks/shippo/README.md#example_two)
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -64,14 +67,15 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 ```python
 import shippo
-from shippo.models import errors
+from shippo.models import components, errors
 
 s = shippo.Shippo()
 
+req = components.LiveRateCreateRequest()
 
 res = None
 try:
-    res = s.example(results_per_page=904965)
+    res = s.example(req)
 except errors.SDKError as e:
     # handle exception
     raise(e)
@@ -97,13 +101,15 @@ You can override the default server globally by passing a server index to the `s
 
 ```python
 import shippo
+from shippo.models import components
 
 s = shippo.Shippo(
     server_idx=0,
 )
 
+req = components.LiveRateCreateRequest()
 
-res = s.example(results_per_page=904965)
+res = s.example(req)
 
 if res.status_code == 200:
     # handle response
@@ -116,13 +122,15 @@ if res.status_code == 200:
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
 import shippo
+from shippo.models import components
 
 s = shippo.Shippo(
     server_url="https://example.com",
 )
 
+req = components.LiveRateCreateRequest()
 
-res = s.example(results_per_page=904965)
+res = s.example(req)
 
 if res.status_code == 200:
     # handle response

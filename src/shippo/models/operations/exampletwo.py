@@ -3,15 +3,18 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from ...models.components import shipment as components_shipment
+from typing import Optional
 
 
 @dataclasses.dataclass
-class ExampleResponse:
+class ExampleTwoResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
+    shipment: Optional[components_shipment.Shipment] = dataclasses.field(default=None)
     
 
