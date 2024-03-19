@@ -33,3 +33,4 @@ python:
   maxMethodParams: 4
   outputModelSuffix: output
   packageName: shippo-api-client
+  responseFormat: envelope
