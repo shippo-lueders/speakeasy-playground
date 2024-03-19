@@ -1,4 +1,4 @@
-# ExampleResponse
+# CreateExampleResponse
 
 
 ## Fields

@@ -31,15 +31,20 @@ pip install git+<UNSET>.git
 
 ```python
 import shippo
+from shippo.models import components
 
 s = shippo.Shippo()
 
+req = components.EntityCreateRequest(
+    type=components.Type.FLAT_RATE,
+)
 
-res = s.example(results_per_page=904965)
+res = s.create_example(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -48,7 +53,8 @@ if res.status_code == 200:
 
 ### [Shippo SDK](docs/sdks/shippo/README.md)
 
-* [example](docs/sdks/shippo/README.md#example)
+* [create_example](docs/sdks/shippo/README.md#create_example)
+* [update_example](docs/sdks/shippo/README.md#update_example)
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -64,21 +70,25 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 ```python
 import shippo
-from shippo.models import errors
+from shippo.models import components, errors
 
 s = shippo.Shippo()
 
+req = components.EntityCreateRequest(
+    type=components.Type.FLAT_RATE,
+)
 
 res = None
 try:
-    res = s.example(results_per_page=904965)
+    res = s.create_example(req)
 except errors.SDKError as e:
     # handle exception
     raise(e)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End Error Handling [errors] -->
 
@@ -97,17 +107,22 @@ You can override the default server globally by passing a server index to the `s
 
 ```python
 import shippo
+from shippo.models import components
 
 s = shippo.Shippo(
     server_idx=0,
 )
 
+req = components.EntityCreateRequest(
+    type=components.Type.FLAT_RATE,
+)
 
-res = s.example(results_per_page=904965)
+res = s.create_example(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 
@@ -116,17 +131,22 @@ if res.status_code == 200:
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
 import shippo
+from shippo.models import components
 
 s = shippo.Shippo(
     server_url="https://example.com",
 )
 
+req = components.EntityCreateRequest(
+    type=components.Type.FLAT_RATE,
+)
 
-res = s.example(results_per_page=904965)
+res = s.create_example(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End Server Selection [server] -->
 

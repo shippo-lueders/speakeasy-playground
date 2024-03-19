@@ -1,21 +1,21 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: 3851061474ad0b751f638e537d98fd25
+  docChecksum: f822cbb41d3156495f19ce4fc30e148b
   docVersion: "1"
-  speakeasyVersion: internal
-  generationVersion: 2.275.2
-  releaseVersion: 0.0.1
-  configChecksum: 5be955b039369e57b218570e7f64d06f
+  speakeasyVersion: 1.205.0
+  generationVersion: 2.279.1
+  releaseVersion: 0.1.0
+  configChecksum: 9c624481fdd54afb869a118b88c9d0a7
 features:
   python:
-    constsAndDefaults: 0.1.2
-    core: 4.5.0
-    flattening: 2.81.1
+    core: 4.5.1
     globalServerURLs: 2.82.1
+    responseFormat: 0.1.0
 generatedFiles:
   - src/shippo/sdkconfiguration.py
   - src/shippo/sdk.py
+  - py.typed
   - pylintrc
   - setup.py
   - src/shippo/__init__.py
@@ -24,12 +24,20 @@ generatedFiles:
   - src/shippo/utils/utils.py
   - src/shippo/models/errors/sdkerror.py
   - tests/helpers.py
-  - src/shippo/models/operations/example.py
+  - src/shippo/models/operations/createexample.py
+  - src/shippo/models/operations/updateexample.py
+  - src/shippo/models/components/entitycreaterequest.py
+  - src/shippo/models/components/entityupdaterequest.py
   - src/shippo/models/__init__.py
   - src/shippo/models/errors/__init__.py
   - src/shippo/models/operations/__init__.py
-  - docs/models/operations/examplerequest.md
-  - docs/models/operations/exampleresponse.md
+  - src/shippo/models/components/__init__.py
+  - docs/models/operations/createexampleresponse.md
+  - docs/models/operations/updateexampleresponse.md
+  - docs/models/components/type.md
+  - docs/models/components/entitycreaterequest.md
+  - docs/models/components/entityupdaterequesttype.md
+  - docs/models/components/entityupdaterequest.md
   - docs/sdks/shippo/README.md
   - USAGE.md
   - .gitattributes

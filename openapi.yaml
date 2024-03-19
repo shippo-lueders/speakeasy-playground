@@ -8,10 +8,23 @@ servers:
 - url: https://example.com
 paths:
   "/example":
-    get:
-      operationId: Example
-      parameters:
-        - $ref: "#/components/parameters/ResultsPerPageQueryParam"
+    post:
+      operationId: CreateExample
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityCreateRequest'
+      responses:
+        '200':
+          description: example
+    put:
+      operationId: UpdateExample
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityUpdateRequest'
       responses:
         '200':
           description: example
@@ -27,3 +40,32 @@ components:
         maximum: 100
         default: 25
   responses: {}
+  schemas:
+    EntityBase:
+      properties:
+        type:
+          description: The type of the service group.<br>
+            `LIVE_RATE` - Shippo will make a rating request and return real-time rates for the shipping group, only falling back to the specified flat rate amount if no rates match a service level in the service group.<br>
+            `FLAT_RATE` - Returns a shipping option with the specified flat rate amount.<br>
+            `FREE_SHIPPING` - Returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
+          enum:
+            - LIVE_RATE
+            - FLAT_RATE
+            - FREE_SHIPPING
+          example: FLAT_RATE
+          type: string
+      type: object
+    EntityCreateRequest:
+      allOf:
+        - $ref: "#/components/schemas/EntityBase"
+        - required:
+            - type
+    EntityUpdateRequest:
+      allOf:
+        - $ref: "#/components/schemas/EntityBase"
+        - properties:
+            id:
+              type: string
+        - required:
+            - id
+            - type
