@@ -1,21 +1,22 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: 3851061474ad0b751f638e537d98fd25
+  docChecksum: 90fcc44f64e17c4c822732af1e41e532
   docVersion: "1"
-  speakeasyVersion: internal
-  generationVersion: 2.275.2
-  releaseVersion: 0.0.1
-  configChecksum: 5be955b039369e57b218570e7f64d06f
+  speakeasyVersion: 1.219.1
+  generationVersion: 2.286.7
+  releaseVersion: 0.1.1
+  configChecksum: 8122f6908a2420616420e157d90ab645
 features:
   python:
-    constsAndDefaults: 0.1.2
-    core: 4.5.0
-    flattening: 2.81.1
-    globalServerURLs: 2.82.1
+    core: 4.5.1
+    getRequestBodies: 2.81.1
+    globalServerURLs: 2.82.2
+    responseFormat: 0.1.0
 generatedFiles:
   - src/shippo/sdkconfiguration.py
   - src/shippo/sdk.py
+  - py.typed
   - pylintrc
   - setup.py
   - src/shippo/__init__.py
@@ -25,11 +26,13 @@ generatedFiles:
   - src/shippo/models/errors/sdkerror.py
   - tests/helpers.py
   - src/shippo/models/operations/example.py
+  - src/shippo/models/components/examplewithoneofarray.py
   - src/shippo/models/__init__.py
   - src/shippo/models/errors/__init__.py
   - src/shippo/models/operations/__init__.py
-  - docs/models/operations/examplerequest.md
+  - src/shippo/models/components/__init__.py
   - docs/models/operations/exampleresponse.md
+  - docs/models/components/examplewithoneofarray.md
   - docs/sdks/shippo/README.md
   - USAGE.md
   - .gitattributes

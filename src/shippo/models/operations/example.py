@@ -3,15 +3,6 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from typing import Optional
-
-
-@dataclasses.dataclass
-class ExampleRequest:
-    results_per_page: Optional[int] = dataclasses.field(default=25, metadata={'query_param': { 'field_name': 'results_per_page', 'style': 'form', 'explode': True }})
-    r"""The number of results to return per page (max 100)"""
-    
-
 
 
 @dataclasses.dataclass

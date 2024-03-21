@@ -4,7 +4,7 @@ import requests as requests_http
 from .sdkconfiguration import SDKConfiguration
 from shippo import utils
 from shippo._hooks import HookContext, SDKHooks
-from shippo.models import errors, operations
+from shippo.models import components, errors, operations
 from typing import Dict, Optional
 
 class Shippo:
@@ -12,14 +12,14 @@ class Shippo:
     sdk_configuration: SDKConfiguration
 
     def __init__(self,
-                 server_idx: int = None,
-                 server_url: str = None,
-                 url_params: Dict[str, str] = None,
-                 client: requests_http.Session = None,
-                 retry_config: utils.RetryConfig = None
+                 server_idx: Optional[int] = None,
+                 server_url: Optional[str] = None,
+                 url_params: Optional[Dict[str, str]] = None,
+                 client: Optional[requests_http.Session] = None,
+                 retry_config: Optional[utils.RetryConfig] = None
                  ) -> None:
         """Instantiates the SDK configuring it with the provided parameters.
-        
+
         :param server_idx: The index of the server to use for all operations
         :type server_idx: int
         :param server_url: The server URL to use for all operations
@@ -33,12 +33,17 @@ class Shippo:
         """
         if client is None:
             client = requests_http.Session()
-        
+
         if server_url is not None:
             if url_params is not None:
                 server_url = utils.template_url(server_url, url_params)
 
-        self.sdk_configuration = SDKConfiguration(client, None, server_url, server_idx, retry_config=retry_config)
+        self.sdk_configuration = SDKConfiguration(
+            client,
+            server_url,
+            server_idx,
+            retry_config=retry_config
+        )
 
         hooks = SDKHooks()
 
@@ -48,34 +53,28 @@ class Shippo:
             self.sdk_configuration.server_url = server_url
 
         # pylint: disable=protected-access
-        self.sdk_configuration._hooks=hooks
-       
-        
-    
-    
-    
-    
-    def example(self, results_per_page: Optional[int] = None) -> operations.ExampleResponse:
+        self.sdk_configuration._hooks = hooks
+
+
+    def example(self, request: Optional[components.ExampleWithOneOfArray]) -> operations.ExampleResponse:
         hook_ctx = HookContext(operation_id='Example', oauth2_scopes=[], security_source=None)
-        request = operations.ExampleRequest(
-            results_per_page=results_per_page,
-        )
-        
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
         url = base_url + '/example'
+        
         headers = {}
-        query_params = utils.get_query_params(operations.ExampleRequest, request)
+        
+        req_content_type, data, form = utils.serialize_request_body(request, Optional[components.ExampleWithOneOfArray], "request", False, True, 'json')
+        if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
+            headers['content-type'] = req_content_type
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
-        
         client = self.sdk_configuration.client
-        
         
         try:
             req = self.sdk_configuration.get_hooks().before_request(
                 hook_ctx, 
-                requests_http.Request('GET', url, params=query_params, headers=headers).prepare(),
+                requests_http.Request('GET', url, data=data, files=form, headers=headers).prepare(),
             )
             http_res = client.send(req)
         except Exception as e:
@@ -92,15 +91,15 @@ class Shippo:
                 raise result
             http_res = result
         
-        content_type = http_res.headers.get('Content-Type')
         
-        res = operations.ExampleResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        res = operations.ExampleResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type'), raw_response=http_res)
         
         if http_res.status_code == 200:
             pass
         elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
             raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+        else:
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
 
         return res
 
-    

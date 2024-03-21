@@ -13,22 +13,29 @@
 
 ```python
 import shippo
+from shippo.models import components
 
 s = shippo.Shippo()
 
+req = components.ExampleWithOneOfArray(
+    one_of_array=[
+        904965,
+    ],
+)
 
-res = s.example(results_per_page=904965)
+res = s.example(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
 
-| Parameter                                          | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `results_per_page`                                 | *Optional[int]*                                    | :heavy_minus_sign:                                 | The number of results to return per page (max 100) |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [components.ExampleWithOneOfArray](../../models/components/examplewithoneofarray.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
 
 ### Response
