@@ -11,19 +11,26 @@ paths:
     get:
       operationId: Example
       parameters:
-        - $ref: "#/components/parameters/ResultsPerPageQueryParam"
+        - $ref: "#/components/parameters/HeaderParam"
       responses:
         '200':
-          description: example
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExampleBody'
 components:
   parameters:
-    ResultsPerPageQueryParam:
+    HeaderParam:
       description: The number of results to return per page (max 100)
-      in: query
-      name: results_per_page
+      in: header
+      name: header_param
       schema:
-        type: integer
-        format: int64
-        maximum: 100
-        default: 25
+        type: string
   responses: {}
+  schemas:
+    ExampleBody:
+      type: object
+      properties:
+        field:
+          type: string
