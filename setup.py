@@ -34,7 +34,9 @@ setuptools.setup(
     ],
     extras_require={
         "dev": [
+            "httpretty==1.1.4",
             "pylint==2.16.2",
+            "pytest==8.1.1",
         ],
     },
     package_dir={'': 'src'},

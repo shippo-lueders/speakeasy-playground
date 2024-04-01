@@ -22,8 +22,8 @@ class SDKConfiguration:
     language: str = 'python'
     openapi_doc_version: str = '1'
     sdk_version: str = '0.0.1'
-    gen_version: str = '2.275.2'
-    user_agent: str = 'speakeasy-sdk/python 0.0.1 2.275.2 1 shippo-api-client'
+    gen_version: str = '2.292.0'
+    user_agent: str = 'speakeasy-sdk/python 0.0.1 2.292.0 1 shippo-api-client'
     retry_config: RetryConfig = None
     _hooks: SDKHooks = None
 

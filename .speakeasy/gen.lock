@@ -1,21 +1,22 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: 3851061474ad0b751f638e537d98fd25
+  docChecksum: e62500c67efdf5fcb52d31544beeb917
   docVersion: "1"
-  speakeasyVersion: internal
-  generationVersion: 2.275.2
+  speakeasyVersion: 1.229.0
+  generationVersion: 2.292.0
   releaseVersion: 0.0.1
-  configChecksum: 5be955b039369e57b218570e7f64d06f
+  configChecksum: 73316866d4bf34a908efc2ab99cf59f8
 features:
   python:
-    constsAndDefaults: 0.1.2
-    core: 4.5.0
+    core: 4.5.2
     flattening: 2.81.1
-    globalServerURLs: 2.82.1
+    globalServerURLs: 2.82.2
+    responseFormat: 0.1.0
 generatedFiles:
   - src/shippo/sdkconfiguration.py
   - src/shippo/sdk.py
+  - py.typed
   - pylintrc
   - setup.py
   - src/shippo/__init__.py
