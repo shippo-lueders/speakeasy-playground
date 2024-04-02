@@ -8,7 +8,7 @@ servers:
 - url: https://example.com
 paths:
   "/example":
-    get:
+    post:
       operationId: Example
       parameters:
         - $ref: "#/components/parameters/HeaderParam"
@@ -18,8 +18,8 @@ paths:
             schema:
               $ref: '#/components/schemas/ExampleBody'
       responses:
-        '200':
-          description: example
+        '201':
+          $ref: '#/components/responses/multiResponse'
 components:
   parameters:
     HeaderParam:
@@ -28,10 +28,28 @@ components:
       name: header_param
       schema:
         type: string
-  responses: {}
+  responses:
+    multiResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: '#/components/schemas/ExampleOneResponse'
+              - $ref: '#/components/schemas/ExampleTwoResponse'
   schemas:
     ExampleBody:
       type: object
       properties:
+        example:
+          type: string
+    ExampleOneResponse:
+      type: object
+      properties:
         field:
           type: string
+    ExampleTwoResponse:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/ExampleBody'

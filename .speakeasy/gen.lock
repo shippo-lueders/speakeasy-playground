@@ -1,21 +1,23 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: 3851061474ad0b751f638e537d98fd25
+  docChecksum: ab3bd845c267214f3dfac07780df55f1
   docVersion: "1"
-  speakeasyVersion: internal
-  generationVersion: 2.275.2
-  releaseVersion: 0.0.1
-  configChecksum: 5be955b039369e57b218570e7f64d06f
+  speakeasyVersion: 1.234.0
+  generationVersion: 2.298.0
+  releaseVersion: 0.2.2
+  configChecksum: 87b020ec40b107873586982b4b82ee8b
 features:
   python:
-    constsAndDefaults: 0.1.2
-    core: 4.5.0
+    core: 4.6.0
     flattening: 2.81.1
-    globalServerURLs: 2.82.1
+    globalServerURLs: 2.82.2
+    responseFormat: 0.1.0
+    unions: 2.82.6
 generatedFiles:
   - src/shippo/sdkconfiguration.py
   - src/shippo/sdk.py
+  - py.typed
   - pylintrc
   - setup.py
   - src/shippo/__init__.py
@@ -24,12 +26,19 @@ generatedFiles:
   - src/shippo/utils/utils.py
   - src/shippo/models/errors/sdkerror.py
   - tests/helpers.py
+  - src/shippo/models/components/exampleoneresponse.py
+  - src/shippo/models/components/exampletworesponse.py
+  - src/shippo/models/components/examplebody.py
   - src/shippo/models/operations/example.py
   - src/shippo/models/__init__.py
   - src/shippo/models/errors/__init__.py
+  - src/shippo/models/components/__init__.py
   - src/shippo/models/operations/__init__.py
+  - docs/models/components/multiresponse.md
+  - docs/models/components/exampleoneresponse.md
+  - docs/models/components/exampletworesponse.md
+  - docs/models/components/examplebody.md
   - docs/models/operations/examplerequest.md
-  - docs/models/operations/exampleresponse.md
   - docs/sdks/shippo/README.md
   - USAGE.md
   - .gitattributes
