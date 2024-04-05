@@ -12,6 +12,7 @@ paths:
       operationId: Example
       parameters:
         - $ref: "#/components/parameters/HeaderParam"
+        - $ref: '#/components/parameters/ShippoApiVersionHeader'
       requestBody:
         content:
           application/json:
@@ -28,6 +29,13 @@ components:
       name: header_param
       schema:
         type: string
+    ShippoApiVersionHeader:
+      description: String used to pick a non-default API version to use
+      in: header
+      name: SHIPPO-API-VERSION
+      schema:
+        type: string
+        example: 2018-02-08
   responses: {}
   schemas:
     ExampleBody:
