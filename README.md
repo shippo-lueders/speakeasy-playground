@@ -33,7 +33,9 @@ pip install git+<UNSET>.git
 import shippo
 from shippo.models import components
 
-s = shippo.Shippo()
+s = shippo.Shippo(
+    api_key_header="<YOUR_API_KEY_HERE>",
+)
 
 
 res = s.example(header_param='<value>', example_body=components.ExampleBody())
@@ -68,7 +70,9 @@ Handling errors in this SDK should largely match your expectations.  All operati
 import shippo
 from shippo.models import components, errors
 
-s = shippo.Shippo()
+s = shippo.Shippo(
+    api_key_header="<YOUR_API_KEY_HERE>",
+)
 
 
 res = None
@@ -104,6 +108,7 @@ from shippo.models import components
 
 s = shippo.Shippo(
     server_idx=0,
+    api_key_header="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -125,6 +130,7 @@ from shippo.models import components
 
 s = shippo.Shippo(
     server_url="https://example.com",
+    api_key_header="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -164,7 +170,9 @@ import shippo
 from shippo.models import components
 from shippo.utils import BackoffStrategy, RetryConfig
 
-s = shippo.Shippo()
+s = shippo.Shippo(
+    api_key_header="<YOUR_API_KEY_HERE>",
+)
 
 
 res = s.example(header_param='<value>', example_body=components.ExampleBody(),
@@ -184,6 +192,7 @@ from shippo.utils import BackoffStrategy, RetryConfig
 
 s = shippo.Shippo(
     retry_config=RetryConfig('backoff', BackoffStrategy(1, 50, 1.1, 100), False)
+    api_key_header="<YOUR_API_KEY_HERE>",
 )
 
 
@@ -195,6 +204,36 @@ if res is not None:
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Authentication [security] -->
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name             | Type             | Scheme           |
+| ---------------- | ---------------- | ---------------- |
+| `api_key_header` | apiKey           | API key          |
+
+To authenticate with the API the `api_key_header` parameter must be set when initializing the SDK client instance. For example:
+```python
+import shippo
+from shippo.models import components
+
+s = shippo.Shippo(
+    api_key_header="<YOUR_API_KEY_HERE>",
+)
+
+
+res = s.example(header_param='<value>', example_body=components.ExampleBody())
+
+if res is not None:
+    # handle response
+    pass
+
+```
+<!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

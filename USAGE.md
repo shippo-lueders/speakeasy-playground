@@ -3,7 +3,9 @@
 import shippo
 from shippo.models import components
 
-s = shippo.Shippo()
+s = shippo.Shippo(
+    api_key_header="<YOUR_API_KEY_HERE>",
+)
 
 
 res = s.example(header_param='<value>', example_body=components.ExampleBody())

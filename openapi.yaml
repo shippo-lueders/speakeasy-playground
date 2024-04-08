@@ -6,6 +6,8 @@ info:
   description: ''
 servers:
 - url: https://example.com
+security:
+  - APIKeyHeader: []
 paths:
   "/example":
     get:
@@ -29,6 +31,11 @@ components:
       schema:
         type: string
   responses: {}
+  securitySchemes:
+    APIKeyHeader:
+      in: header
+      name: Authorization
+      type: apiKey
   schemas:
     ExampleBody:
       type: object

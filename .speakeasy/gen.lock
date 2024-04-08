@@ -1,17 +1,18 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: c8a6c57fb478da52749846f6b9daa620
+  docChecksum: fee95c6ff60f75d0cd7df9b1bed48cae
   docVersion: "1"
   speakeasyVersion: 1.235.2
   generationVersion: 2.298.2
-  releaseVersion: 0.1.0
-  configChecksum: 6124ffbb29f4c376978d74c5e711c4ef
+  releaseVersion: 0.2.0
+  configChecksum: 78d67c80e090afbfdb512b10526aebf9
 features:
   python:
     core: 4.6.2
     flattening: 2.81.1
     getRequestBodies: 2.81.1
+    globalSecurity: 2.83.5
     globalServerURLs: 2.82.2
     responseFormat: 0.1.0
     retries: 2.82.1
@@ -29,6 +30,7 @@ generatedFiles:
   - tests/helpers.py
   - src/shippo/models/operations/example.py
   - src/shippo/models/components/examplebody.py
+  - src/shippo/models/components/security.py
   - src/shippo/models/__init__.py
   - src/shippo/models/errors/__init__.py
   - src/shippo/models/operations/__init__.py
@@ -36,6 +38,7 @@ generatedFiles:
   - docs/models/operations/examplerequest.md
   - docs/models/operations/exampleresponse.md
   - docs/models/components/examplebody.md
+  - docs/models/components/security.md
   - docs/models/utils/retryconfig.md
   - docs/sdks/shippo/README.md
   - USAGE.md

@@ -6,13 +6,14 @@ from .utils.retries import RetryConfig
 from shippo import utils
 from shippo._hooks import AfterErrorContext, AfterSuccessContext, BeforeRequestContext, HookContext, SDKHooks
 from shippo.models import components, errors, operations
-from typing import Dict, Optional
+from typing import Callable, Dict, Optional, Union
 
 class Shippo:
 
     sdk_configuration: SDKConfiguration
 
     def __init__(self,
+                 api_key_header: Union[str, Callable[[], str]],
                  server_idx: Optional[int] = None,
                  server_url: Optional[str] = None,
                  url_params: Optional[Dict[str, str]] = None,
@@ -21,6 +22,8 @@ class Shippo:
                  ) -> None:
         """Instantiates the SDK configuring it with the provided parameters.
 
+        :param api_key_header: The api_key_header required for authentication
+        :type api_key_header: Union[str, Callable[[], str]]
         :param server_idx: The index of the server to use for all operations
         :type server_idx: int
         :param server_url: The server URL to use for all operations
@@ -35,12 +38,19 @@ class Shippo:
         if client is None:
             client = requests_http.Session()
 
+        if callable(api_key_header):
+            def security():
+                return components.Security(api_key_header = api_key_header())
+        else:
+            security = components.Security(api_key_header = api_key_header)
+
         if server_url is not None:
             if url_params is not None:
                 server_url = utils.template_url(server_url, url_params)
 
         self.sdk_configuration = SDKConfiguration(
             client,
+            security,
             server_url,
             server_idx,
             retry_config=retry_config
@@ -58,7 +68,7 @@ class Shippo:
 
 
     def example(self, header_param: Optional[str] = None, example_body: Optional[components.ExampleBody] = None, retries: Optional[utils.RetryConfig] = None) -> operations.ExampleResponse:
-        hook_ctx = HookContext(operation_id='Example', oauth2_scopes=[], security_source=None)
+        hook_ctx = HookContext(operation_id='Example', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         request = operations.ExampleRequest(
             header_param=header_param,
             example_body=example_body,
@@ -68,7 +78,10 @@ class Shippo:
         
         url = base_url + '/example'
         
-        headers = {}
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
         
         headers = { **utils.get_headers(request), **headers }
         req_content_type, data, form = utils.serialize_request_body(request, operations.ExampleRequest, "example_body", False, True, 'json')
@@ -90,7 +103,7 @@ class Shippo:
         def do_request():
             nonlocal req
             try:
-                req = client.prepare_request(requests_http.Request('GET', url, data=data, files=form, headers=headers))
+                req = client.prepare_request(requests_http.Request('GET', url, params=query_params, data=data, files=form, headers=headers))
                 req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
                 http_res = client.send(req)
             except Exception as e:
