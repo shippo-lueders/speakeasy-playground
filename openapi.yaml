@@ -35,3 +35,12 @@ components:
       properties:
         field:
           type: string
+x-speakeasy-retries:
+  strategy: backoff
+  backoff:
+    initialInterval: 250  # 250 milliseconds
+    maxInterval: 1000     # 1 second
+    maxElapsedTime: 2000  # 2 seconds
+    exponent: 2
+  statusCodes: ['5XX']
+  retryConnectionErrors: true
