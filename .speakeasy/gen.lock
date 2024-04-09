@@ -3,13 +3,13 @@ id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
   docChecksum: fee95c6ff60f75d0cd7df9b1bed48cae
   docVersion: "1"
-  speakeasyVersion: 1.235.2
-  generationVersion: 2.298.2
-  releaseVersion: 0.2.0
-  configChecksum: 78d67c80e090afbfdb512b10526aebf9
+  speakeasyVersion: 1.243.0
+  generationVersion: 2.301.0
+  releaseVersion: 0.2.1
+  configChecksum: be2d777419fd307ff7600b337ececbe0
 features:
   python:
-    core: 4.6.2
+    core: 4.6.4
     flattening: 2.81.1
     getRequestBodies: 2.81.1
     globalSecurity: 2.83.5
