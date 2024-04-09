@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: fee95c6ff60f75d0cd7df9b1bed48cae
+  docChecksum: f0e64bf4c0bdbc7e561ea70f9ee68b41
   docVersion: "1"
   speakeasyVersion: 1.243.0
   generationVersion: 2.301.0
-  releaseVersion: 0.2.1
-  configChecksum: be2d777419fd307ff7600b337ececbe0
+  releaseVersion: 0.2.2
+  configChecksum: a3dae968b7d6b1bf6f0f21093cf54d7e
 features:
   python:
     core: 4.6.4
