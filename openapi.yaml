@@ -50,3 +50,4 @@ x-speakeasy-retries:
     maxElapsedTime: 2000  # 2 seconds
     exponent: 2
   statusCodes: ['5XX']
+  retryConnectionErrors: true
