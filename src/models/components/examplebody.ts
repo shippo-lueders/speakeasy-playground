@@ -5,36 +5,43 @@
 import * as z from "zod";
 
 export type ExampleBody = {
-    field?: string | undefined;
+    requiredField: string;
+    optionalField?: string | undefined;
 };
 
 /** @internal */
 export namespace ExampleBody$ {
     export type Inbound = {
-        field?: string | undefined;
+        requiredField: string;
+        optionalField?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<ExampleBody, z.ZodTypeDef, Inbound> = z
         .object({
-            field: z.string().optional(),
+            requiredField: z.string(),
+            optionalField: z.string().optional(),
         })
         .transform((v) => {
             return {
-                ...(v.field === undefined ? null : { field: v.field }),
+                requiredField: v.requiredField,
+                ...(v.optionalField === undefined ? null : { optionalField: v.optionalField }),
             };
         });
 
     export type Outbound = {
-        field?: string | undefined;
+        requiredField: string;
+        optionalField?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ExampleBody> = z
         .object({
-            field: z.string().optional(),
+            requiredField: z.string(),
+            optionalField: z.string().optional(),
         })
         .transform((v) => {
             return {
-                ...(v.field === undefined ? null : { field: v.field }),
+                requiredField: v.requiredField,
+                ...(v.optionalField === undefined ? null : { optionalField: v.optionalField }),
             };
         });
 }

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6dfd6e8b-0984-4a77-b9b7-6a03dbb13de8
 management:
-  docChecksum: 0a44e2afc0aecd53a8a72ec621fbfec7
+  docChecksum: db94ac50aecf51a64a93483471e9d0f3
   docVersion: "1"
   speakeasyVersion: 1.244.2
   generationVersion: 2.301.3
   releaseVersion: 0.0.1
-  configChecksum: 7211aa00800abe8e011c9f434ef38523
+  configChecksum: b6df7ceed155d89b9bfc16bc8f6a3f1c
 features:
   typescript:
     core: 3.7.1
@@ -39,8 +39,8 @@ generatedFiles:
   - tsconfig.json
   - src/models/operations/getexample.ts
   - src/models/operations/createexample.ts
-  - src/models/components/httpmetadata.ts
   - src/models/components/examplebody.ts
+  - src/models/components/httpmetadata.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
   - src/models/components/index.ts
@@ -48,8 +48,8 @@ generatedFiles:
   - docs/models/operations/getexampleresponse.md
   - docs/models/operations/createexamplerequest.md
   - docs/models/operations/createexampleresponse.md
-  - docs/models/components/httpmetadata.md
   - docs/models/components/examplebody.md
+  - docs/models/components/httpmetadata.md
   - docs/sdks/shippo/README.md
   - USAGE.md
   - .gitattributes

@@ -48,7 +48,7 @@ export class Shippo extends ClientSDK {
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -85,17 +85,22 @@ export class Shippo extends ClientSDK {
             },
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return operations.GetExampleResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ExampleBody: val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            return result;
         } else {
             throw new errors.SDKError("Unexpected API response", { response, request });
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.GetExampleResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     async createExample(
@@ -110,7 +115,7 @@ export class Shippo extends ClientSDK {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -147,16 +152,21 @@ export class Shippo extends ClientSDK {
             },
         };
 
-        if (this.matchStatusCode(response, 201)) {
-            // fallthrough
+        if (this.matchResponse(response, 201, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return operations.CreateExampleResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ExampleBody: val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            return result;
         } else {
             throw new errors.SDKError("Unexpected API response", { response, request });
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.CreateExampleResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 }

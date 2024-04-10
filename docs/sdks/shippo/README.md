@@ -58,7 +58,9 @@ async function run() {
   const sdk = new Shippo();
 
   const headerParam = "<value>";
-  const exampleBody = {};
+  const exampleBody = {
+    requiredField: "<value>",
+  };
   
   const result = await sdk.createExample(headerParam, exampleBody);
 
