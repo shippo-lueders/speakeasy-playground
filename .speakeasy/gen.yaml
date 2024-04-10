@@ -15,7 +15,15 @@ typescript:
   version: 0.0.1
   additionalDependencies:
     dependencies: {}
-    devDependencies: {}
+    devDependencies:
+      '@types/chai': ^4.3.14
+      '@types/fetch-mock': ^7.3.8
+      '@types/mocha': ^10.0.6
+      chai: ^5.1.0
+      fetch-mock: ^9.11.0
+      mocha: ^10.4.0
+      node-fetch: ^3.3.2
+      tsx: ^4.7.2
     peerDependencies: {}
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
