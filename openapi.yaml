@@ -9,12 +9,12 @@ servers:
 paths:
   "/example":
     get:
-      operationId: GetExample
+      operationId: ListExamples
       parameters:
         - $ref: "#/components/parameters/HeaderParam"
       responses:
         '200':
-          $ref: '#/components/responses/exampleResponse'
+          $ref: '#/components/responses/exampleListResponse'
     post:
       operationId: CreateExample
       parameters:
@@ -26,6 +26,19 @@ paths:
               $ref: '#/components/schemas/ExampleBody'
       responses:
         '201':
+          $ref: '#/components/responses/exampleResponse'
+  "/example/{ExampleId}":
+    get:
+      operationId: GetExample
+      parameters:
+        - $ref: "#/components/parameters/HeaderParam"
+        - in: path
+          name: ExampleId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
           $ref: '#/components/responses/exampleResponse'
 components:
   parameters:
@@ -42,6 +55,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ExampleBody'
+    exampleListResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/ExampleBody'
+            type: array
   schemas:
     ExampleBody:
       type: object

@@ -7,7 +7,7 @@ async function run() {
 
     const headerParam = "<value>";
 
-    const result = await sdk.getExample(headerParam);
+    const result = await sdk.listExamples(headerParam);
 
     // Handle the result
     console.log(result);

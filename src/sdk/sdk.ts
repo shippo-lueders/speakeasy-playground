@@ -39,11 +39,11 @@ export class Shippo extends ClientSDK {
         void this.options$;
     }
 
-    async getExample(
+    async listExamples(
         headerParam?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetExampleResponse> {
-        const input$: operations.GetExampleRequest = {
+    ): Promise<operations.ListExamplesResponse> {
+        const input$: operations.ListExamplesRequest = {
             headerParam: headerParam,
         };
         const headers$ = new Headers();
@@ -52,7 +52,7 @@ export class Shippo extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetExampleRequest$.outboundSchema.parse(value$),
+            (value$) => operations.ListExamplesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -68,7 +68,7 @@ export class Shippo extends ClientSDK {
                 charEncoding: "none",
             })
         );
-        const context = { operationID: "GetExample", oAuth2Scopes: [], securitySource: null };
+        const context = { operationID: "ListExamples", oAuth2Scopes: [], securitySource: null };
 
         const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request = this.createRequest$(
@@ -90,9 +90,9 @@ export class Shippo extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetExampleResponse$.inboundSchema.parse({
+                    return operations.ListExamplesResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ExampleBody: val$,
+                        exampleListResponse: val$,
                     });
                 },
                 "Response validation failed"
@@ -158,6 +158,78 @@ export class Shippo extends ClientSDK {
                 responseBody,
                 (val$) => {
                     return operations.CreateExampleResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ExampleBody: val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else {
+            throw new errors.SDKError("Unexpected API response", { response, request });
+        }
+    }
+
+    async getExample(
+        exampleId: string,
+        headerParam?: string | undefined,
+        options?: RequestOptions
+    ): Promise<operations.GetExampleResponse> {
+        const input$: operations.GetExampleRequest = {
+            exampleId: exampleId,
+            headerParam: headerParam,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.GetExampleRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            ExampleId: enc$.encodeSimple("ExampleId", payload$.ExampleId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/example/{ExampleId}")(pathParams$);
+
+        const query$ = "";
+
+        headers$.set(
+            "header_param",
+            enc$.encodeSimple("header_param", payload$.header_param, {
+                explode: false,
+                charEncoding: "none",
+            })
+        );
+        const context = { operationID: "GetExample", oAuth2Scopes: [], securitySource: null };
+
+        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const request = this.createRequest$(
+            { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: {
+                Response: response,
+                Request: request,
+            },
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return operations.GetExampleResponse$.inboundSchema.parse({
                         ...responseFields$,
                         ExampleBody: val$,
                     });

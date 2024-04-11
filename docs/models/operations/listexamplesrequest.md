@@ -1,9 +1,8 @@
-# GetExampleRequest
+# ListExamplesRequest
 
 
 ## Fields
 
 | Field                                              | Type                                               | Required                                           | Description                                        |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `exampleId`                                        | *string*                                           | :heavy_check_mark:                                 | N/A                                                |
 | `headerParam`                                      | *string*                                           | :heavy_minus_sign:                                 | The number of results to return per page (max 100) |

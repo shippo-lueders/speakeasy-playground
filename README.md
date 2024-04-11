@@ -51,7 +51,7 @@ async function run() {
 
     const headerParam = "<value>";
 
-    const result = await sdk.getExample(headerParam);
+    const result = await sdk.listExamples(headerParam);
 
     // Handle the result
     console.log(result);
@@ -67,8 +67,9 @@ run();
 
 ### [Shippo SDK](docs/sdks/shippo/README.md)
 
-* [getExample](docs/sdks/shippo/README.md#getexample)
+* [listExamples](docs/sdks/shippo/README.md#listexamples)
 * [createExample](docs/sdks/shippo/README.md#createexample)
+* [getExample](docs/sdks/shippo/README.md#getexample)
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -94,7 +95,7 @@ async function run() {
 
     let result;
     try {
-        result = await sdk.getExample(headerParam);
+        result = await sdk.listExamples(headerParam);
     } catch (err) {
         switch (true) {
             case err instanceof errors.SDKValidationError: {
@@ -140,7 +141,7 @@ async function run() {
 
     const headerParam = "<value>";
 
-    const result = await sdk.getExample(headerParam);
+    const result = await sdk.listExamples(headerParam);
 
     // Handle the result
     console.log(result);
@@ -165,7 +166,7 @@ async function run() {
 
     const headerParam = "<value>";
 
-    const result = await sdk.getExample(headerParam);
+    const result = await sdk.listExamples(headerParam);
 
     // Handle the result
     console.log(result);

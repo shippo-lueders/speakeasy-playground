@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6dfd6e8b-0984-4a77-b9b7-6a03dbb13de8
 management:
-  docChecksum: db94ac50aecf51a64a93483471e9d0f3
+  docChecksum: cd3426ebd9857ec857501a576cf29264
   docVersion: "1"
   speakeasyVersion: 1.244.2
   generationVersion: 2.301.3
-  releaseVersion: 0.0.1
-  configChecksum: b6df7ceed155d89b9bfc16bc8f6a3f1c
+  releaseVersion: 0.0.2
+  configChecksum: d01f6454d6b986f24c1341f86df24480
 features:
   typescript:
     core: 3.7.1
@@ -37,17 +37,20 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
-  - src/models/operations/getexample.ts
+  - src/models/operations/listexamples.ts
   - src/models/operations/createexample.ts
+  - src/models/operations/getexample.ts
   - src/models/components/examplebody.ts
   - src/models/components/httpmetadata.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
   - src/models/components/index.ts
-  - docs/models/operations/getexamplerequest.md
-  - docs/models/operations/getexampleresponse.md
+  - docs/models/operations/listexamplesrequest.md
+  - docs/models/operations/listexamplesresponse.md
   - docs/models/operations/createexamplerequest.md
   - docs/models/operations/createexampleresponse.md
+  - docs/models/operations/getexamplerequest.md
+  - docs/models/operations/getexampleresponse.md
   - docs/models/components/examplebody.md
   - docs/models/components/httpmetadata.md
   - docs/sdks/shippo/README.md
