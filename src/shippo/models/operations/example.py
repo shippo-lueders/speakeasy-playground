@@ -3,13 +3,15 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from ...models.components import examplebody as components_examplebody
 from typing import Optional
 
 
 @dataclasses.dataclass
 class ExampleRequest:
-    results_per_page: Optional[int] = dataclasses.field(default=25, metadata={'query_param': { 'field_name': 'results_per_page', 'style': 'form', 'explode': True }})
+    header_param: Optional[str] = dataclasses.field(default=None, metadata={'header': { 'field_name': 'header_param', 'style': 'simple', 'explode': False }})
     r"""The number of results to return per page (max 100)"""
+    example_body: Optional[components_examplebody.ExampleBody] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     
 
 
