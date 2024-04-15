@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: a170e0a9d27d7e9db03dff0760278b4e
+  docChecksum: 9ffd332deb23258d9b131287f2284031
   docVersion: "1"
   speakeasyVersion: 1.244.2
   generationVersion: 2.301.3
-  releaseVersion: 0.1.0
-  configChecksum: 6124ffbb29f4c376978d74c5e711c4ef
+  releaseVersion: 0.2.4
+  configChecksum: 0be0efb39749adbe3382778ea0dbde83
 features:
   python:
     core: 4.6.4
@@ -14,6 +14,7 @@ features:
     getRequestBodies: 2.81.1
     globalServerURLs: 2.82.2
     responseFormat: 0.1.0
+    unions: 2.82.6
 generatedFiles:
   - src/shippo/sdkconfiguration.py
   - src/shippo/sdk.py
@@ -28,13 +29,21 @@ generatedFiles:
   - tests/helpers.py
   - src/shippo/models/operations/example.py
   - src/shippo/models/components/examplebody.py
+  - src/shippo/models/components/statusenum.py
   - src/shippo/models/__init__.py
   - src/shippo/models/errors/__init__.py
   - src/shippo/models/operations/__init__.py
   - src/shippo/models/components/__init__.py
   - docs/models/operations/examplerequest.md
   - docs/models/operations/exampleresponse.md
+  - docs/models/components/enumfield.md
+  - docs/models/components/two.md
+  - docs/models/components/optionalenumfield.md
+  - docs/models/components/otheroptionalenumfield2.md
+  - docs/models/components/otheroptionalenumfield.md
   - docs/models/components/examplebody.md
+  - docs/models/components/status.md
+  - docs/models/components/statusenum.md
   - docs/sdks/shippo/README.md
   - USAGE.md
   - .gitattributes

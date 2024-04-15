@@ -33,5 +33,33 @@ components:
     ExampleBody:
       type: object
       properties:
-        field:
+        enum_field:
           type: string
+          enum:
+            - value1
+            - value2
+        optional_enum_field:
+          oneOf:
+            - type: string
+            - type: string
+              enum:
+                - value3
+                - value4
+        other_optional_enum_field:
+          oneOf:
+            - type: string
+            - type: string
+              enum:
+                - value5
+                - value6
+        status:
+          $ref: "#/components/schemas/Status"
+    Status:
+      oneOf:
+        - type: string
+        - $ref: "#/components/schemas/StatusEnum"
+    StatusEnum:
+      type: string
+      enum:
+        - VALID
+        - INVALID
