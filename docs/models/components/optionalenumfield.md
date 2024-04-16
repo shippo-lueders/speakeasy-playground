@@ -9,9 +9,9 @@
 optionalEnumField: str = /* values here */
 ```
 
-### Two
+### OptionalEnumFieldOptionalEnumField
 
 ```python
-optionalEnumField: components.Two = /* values here */
+optionalEnumField: components.OptionalEnumFieldOptionalEnumField = /* values here */
 ```
 

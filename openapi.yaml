@@ -45,6 +45,7 @@ components:
               enum:
                 - value3
                 - value4
+              x-speakeasy-name-override: optional_enum_field
         other_optional_enum_field:
           oneOf:
             - type: string
@@ -52,6 +53,7 @@ components:
               enum:
                 - value5
                 - value6
+              x-speakeasy-name-override: other_optional_enum_field
         status:
           $ref: "#/components/schemas/Status"
     Status:

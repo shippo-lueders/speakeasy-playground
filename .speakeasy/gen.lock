@@ -1,18 +1,19 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: 9ffd332deb23258d9b131287f2284031
+  docChecksum: 76f85773647e89414a55d99a857397dd
   docVersion: "1"
   speakeasyVersion: 1.244.2
   generationVersion: 2.301.3
-  releaseVersion: 0.2.4
-  configChecksum: 0be0efb39749adbe3382778ea0dbde83
+  releaseVersion: 0.3.0
+  configChecksum: b26f9ddeb35dc69b95f68e5eedb52783
 features:
   python:
     core: 4.6.4
     flattening: 2.81.1
     getRequestBodies: 2.81.1
     globalServerURLs: 2.82.2
+    nameOverrides: 2.81.2
     responseFormat: 0.1.0
     unions: 2.82.6
 generatedFiles:
@@ -37,9 +38,9 @@ generatedFiles:
   - docs/models/operations/examplerequest.md
   - docs/models/operations/exampleresponse.md
   - docs/models/components/enumfield.md
-  - docs/models/components/two.md
+  - docs/models/components/optionalenumfieldoptionalenumfield.md
   - docs/models/components/optionalenumfield.md
-  - docs/models/components/otheroptionalenumfield2.md
+  - docs/models/components/otheroptionalenumfieldotheroptionalenumfield.md
   - docs/models/components/otheroptionalenumfield.md
   - docs/models/components/examplebody.md
   - docs/models/components/status.md

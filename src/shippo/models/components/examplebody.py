@@ -12,11 +12,11 @@ class EnumField(str, Enum):
     VALUE1 = 'value1'
     VALUE2 = 'value2'
 
-class Two(str, Enum):
+class OptionalEnumFieldOptionalEnumField(str, Enum):
     VALUE3 = 'value3'
     VALUE4 = 'value4'
 
-class OtherOptionalEnumField2(str, Enum):
+class OtherOptionalEnumFieldOtherOptionalEnumField(str, Enum):
     VALUE5 = 'value5'
     VALUE6 = 'value6'
 
@@ -25,8 +25,8 @@ class OtherOptionalEnumField2(str, Enum):
 @dataclasses.dataclass
 class ExampleBody:
     enum_field: Optional[EnumField] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enum_field'), 'exclude': lambda f: f is None }})
-    optional_enum_field: Optional[Union[str, Two]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('optional_enum_field'), 'exclude': lambda f: f is None }})
-    other_optional_enum_field: Optional[Union[str, OtherOptionalEnumField2]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('other_optional_enum_field'), 'exclude': lambda f: f is None }})
+    optional_enum_field: Optional[Union[str, OptionalEnumFieldOptionalEnumField]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('optional_enum_field'), 'exclude': lambda f: f is None }})
+    other_optional_enum_field: Optional[Union[str, OtherOptionalEnumFieldOtherOptionalEnumField]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('other_optional_enum_field'), 'exclude': lambda f: f is None }})
     status: Optional[Union[str, StatusEnum]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status'), 'exclude': lambda f: f is None }})
     
 
