@@ -3,4 +3,4 @@
 from .examplebody import *
 from .statusenum import *
 
-__all__ = ["EnumField","ExampleBody","OptionalEnumFieldOptionalEnumField","OtherOptionalEnumFieldOtherOptionalEnumField","StatusEnum"]
+__all__ = ["EnumField","ExampleBody","OptionalEnumFieldParentOptionalEnumFieldParent","OtherOptionalEnumFieldParentOtherOptionalEnumFieldParent","StatusEnum"]

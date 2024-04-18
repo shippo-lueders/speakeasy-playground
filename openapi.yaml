@@ -39,6 +39,7 @@ components:
             - value1
             - value2
         optional_enum_field:
+          x-speakeasy-name-override: optional_enum_field_parent
           oneOf:
             - type: string
             - type: string
@@ -47,6 +48,7 @@ components:
                 - value4
               x-speakeasy-name-override: optional_enum_field
         other_optional_enum_field:
+          x-speakeasy-name-override: other_optional_enum_field_parent
           oneOf:
             - type: string
             - type: string

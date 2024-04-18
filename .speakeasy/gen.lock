@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: 76f85773647e89414a55d99a857397dd
+  docChecksum: e8b0a8f8e23dbcbdbea4bcda5b8d26d7
   docVersion: "1"
   speakeasyVersion: 1.244.2
   generationVersion: 2.301.3
-  releaseVersion: 0.3.0
-  configChecksum: b26f9ddeb35dc69b95f68e5eedb52783
+  releaseVersion: 0.3.3
+  configChecksum: 8608e2615fc5fe5e17c9acfcaec1a07d
 features:
   python:
     core: 4.6.4
@@ -38,10 +38,10 @@ generatedFiles:
   - docs/models/operations/examplerequest.md
   - docs/models/operations/exampleresponse.md
   - docs/models/components/enumfield.md
-  - docs/models/components/optionalenumfieldoptionalenumfield.md
-  - docs/models/components/optionalenumfield.md
-  - docs/models/components/otheroptionalenumfieldotheroptionalenumfield.md
-  - docs/models/components/otheroptionalenumfield.md
+  - docs/models/components/optionalenumfieldparentoptionalenumfieldparent.md
+  - docs/models/components/optionalenumfieldparent.md
+  - docs/models/components/otheroptionalenumfieldparentotheroptionalenumfieldparent.md
+  - docs/models/components/otheroptionalenumfieldparent.md
   - docs/models/components/examplebody.md
   - docs/models/components/status.md
   - docs/models/components/statusenum.md
