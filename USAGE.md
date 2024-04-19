@@ -5,10 +5,11 @@ import shippo
 s = shippo.Shippo()
 
 
-res = s.example(results_per_page=904965)
+res = s.example(header_param='<value>')
 
-if res.status_code == 200:
+if res.example_body is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
