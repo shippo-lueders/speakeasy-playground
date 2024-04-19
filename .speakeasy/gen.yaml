@@ -36,4 +36,4 @@ python:
   outputModelSuffix: output
   packageName: shippo-api-client
   projectUrls: {}
-  responseFormat: envelope
+  responseFormat: flat
