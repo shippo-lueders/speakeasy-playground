@@ -31,15 +31,17 @@ pip install git+<UNSET>.git
 
 ```python
 import shippo
+from shippo.models import components
 
 s = shippo.Shippo()
 
 
-res = s.example(results_per_page=904965)
+res = s.example(header_param='<value>', example_body=components.ExampleBody())
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -56,29 +58,38 @@ if res.status_code == 200:
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ExampleResponseBody         | 400                                | application/json                   |
+| errors.ExampleResponseResponseBody | 422                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ### Example
 
 ```python
 import shippo
-from shippo.models import errors
+from shippo.models import components, errors
 
 s = shippo.Shippo()
 
 
 res = None
 try:
-    res = s.example(results_per_page=904965)
+    res = s.example(header_param='<value>', example_body=components.ExampleBody())
+except errors.ExampleResponseBody as e:
+    # handle exception
+    raise(e)
+except errors.ExampleResponseResponseBody as e:
+    # handle exception
+    raise(e)
 except errors.SDKError as e:
     # handle exception
     raise(e)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End Error Handling [errors] -->
 
@@ -97,17 +108,19 @@ You can override the default server globally by passing a server index to the `s
 
 ```python
 import shippo
+from shippo.models import components
 
 s = shippo.Shippo(
     server_idx=0,
 )
 
 
-res = s.example(results_per_page=904965)
+res = s.example(header_param='<value>', example_body=components.ExampleBody())
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 
@@ -116,17 +129,19 @@ if res.status_code == 200:
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
 import shippo
+from shippo.models import components
 
 s = shippo.Shippo(
     server_url="https://example.com",
 )
 
 
-res = s.example(results_per_page=904965)
+res = s.example(header_param='<value>', example_body=components.ExampleBody())
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End Server Selection [server] -->
 
@@ -142,7 +157,7 @@ import requests
 
 http_client = requests.Session()
 http_client.headers.update({'x-custom-header': 'someValue'})
-s = shippo.Shippo(client: http_client)
+s = shippo.Shippo(client=http_client)
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
