@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 csharp:
-  version: 0.0.1
+  version: 0.0.4
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   disableNamespacePascalCasingApr2024: true

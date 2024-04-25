@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6e4635b7-9ee3-4612-a072-a8e6b611de3e
 management:
-  docChecksum: 0a44e2afc0aecd53a8a72ec621fbfec7
+  docChecksum: c8d7905555d656bf3104fc030b61e5b7
   docVersion: "1"
   speakeasyVersion: 1.269.5
   generationVersion: 2.312.1
-  releaseVersion: 0.0.1
-  configChecksum: 0771eeca522c9a9e3c8da85a82eba466
+  releaseVersion: 0.0.4
+  configChecksum: e7f2d26ab686b1f9ba07a85b1330a47c
 features:
   csharp:
     core: 3.7.0
@@ -39,12 +39,14 @@ generatedFiles:
   - Shippo/Models/Requests/CreateExampleResponse.cs
   - Shippo/Models/Components/HTTPMetadata.cs
   - Shippo/Models/Components/ExampleBody.cs
+  - Shippo/Models/Errors/GetExampleResponseBody.cs
   - docs/Models/Requests/GetExampleRequest.md
   - docs/Models/Requests/GetExampleResponse.md
   - docs/Models/Requests/CreateExampleRequest.md
   - docs/Models/Requests/CreateExampleResponse.md
   - docs/Models/Components/HTTPMetadata.md
   - docs/Models/Components/ExampleBody.md
+  - docs/Models/Errors/GetExampleResponseBody.md
   - docs/sdks/shippo/README.md
   - USAGE.md
   - .gitattributes

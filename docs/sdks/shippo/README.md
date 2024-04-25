@@ -35,9 +35,10 @@ var res = await sdk.GetExampleAsync(headerParam: "<value>");
 **[GetExampleResponse](../../Models/Requests/GetExampleResponse.md)**
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+| Error Object                                | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| Shippo.Models.Errors.GetExampleResponseBody | 400                                         | application/json                            |
+| Shippo.Models.Errors.SDKException           | 4xx-5xx                                     | */*                                         |
 
 ## CreateExample
 

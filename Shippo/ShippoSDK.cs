@@ -54,10 +54,10 @@ namespace Shippo
         public SDKConfig SDKConfiguration { get; private set; }
 
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.0.1";
+        private const string _sdkVersion = "0.0.4";
         private const string _sdkGenVersion = "2.312.1";
         private const string _openapiDocVersion = "1";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.0.1 2.312.1 1 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.0.4 2.312.1 1 Shippo";
         private string _serverUrl = "";
         private int _serverIndex = 0;
         private ISpeakeasyHttpClient _defaultClient;
@@ -122,6 +122,19 @@ namespace Shippo
                         Request = httpRequest
                     }
                 };;
+            }
+            else if(responseStatusCode == 400)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<GetExampleResponseBody>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    obj!.HttpMeta = sharedHTTPMetadata(httpRequest, httpResponse);
+                    throw obj!;
+                }
+                else
+                {
+                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
+                }
             }
             else if(responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {

@@ -15,6 +15,16 @@ paths:
       responses:
         '200':
           $ref: '#/components/schemas/ExampleBody'
+        '400':
+          description: Invalid parameters provided by the user
+          content:
+            application/json:
+              schema:
+                properties:
+                  title:
+                    type: string
+                  detail:
+                    type: string
     post:
       operationId: CreateExample
       parameters:

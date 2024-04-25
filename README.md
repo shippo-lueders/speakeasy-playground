@@ -57,9 +57,10 @@ var res = await sdk.GetExampleAsync(headerParam: "<value>");
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or thow an exception.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate type.
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+| Error Object                                | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| Shippo.Models.Errors.GetExampleResponseBody | 400                                         | application/json                            |
+| Shippo.Models.Errors.SDKException           | 4xx-5xx                                     | */*                                         |
 
 ### Example
 
@@ -78,6 +79,9 @@ try
 }
 catch (Exception ex)
 {
+    if (ex is GetExampleResponseBody)
+    {
+        // handle exception
     }
     else if (ex is Shippo.Models.Errors.SDKException)
     {
