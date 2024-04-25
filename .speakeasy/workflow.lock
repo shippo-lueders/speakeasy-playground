@@ -1,0 +1,25 @@
+speakeasyVersion: 1.269.5
+sources:
+    my-first-source:
+        sourceNamespace: my-first-source
+        sourceRevisionDigest: sha256:51d340286b2a365da5c2750eadf2a669fb87d906bcf0554a7b9f09231c6a191f
+        sourceBlobDigest: sha256:f2138e6dbcb1adb526cb22f547b0339b6da6e763b32100ca355c09f9f3dea0f3
+        tags:
+            - latest
+targets:
+    my-first-target:
+        source: my-first-source
+        sourceNamespace: my-first-source
+        sourceRevisionDigest: sha256:51d340286b2a365da5c2750eadf2a669fb87d906bcf0554a7b9f09231c6a191f
+        sourceBlobDigest: sha256:f2138e6dbcb1adb526cb22f547b0339b6da6e763b32100ca355c09f9f3dea0f3
+        outLocation: /Users/mike.lueders/dev/speakeasy-playground-csharp
+workflow:
+    workflowVersion: 1.0.0
+    sources:
+        my-first-source:
+            inputs:
+                - location: ./openapi.yaml
+    targets:
+        my-first-target:
+            target: csharp
+            source: my-first-source

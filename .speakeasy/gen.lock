@@ -1,0 +1,50 @@
+lockVersion: 2.0.0
+id: 6e4635b7-9ee3-4612-a072-a8e6b611de3e
+management:
+  docChecksum: 0a44e2afc0aecd53a8a72ec621fbfec7
+  docVersion: "1"
+  speakeasyVersion: 1.269.5
+  generationVersion: 2.312.1
+  releaseVersion: 0.0.1
+  configChecksum: 0771eeca522c9a9e3c8da85a82eba466
+features:
+  csharp:
+    core: 3.7.0
+    flattening: 2.81.1
+    globalServerURLs: 2.82.3
+    responseFormat: 0.0.1
+generatedFiles:
+  - Shippo/ShippoSDK.cs
+  - global.json
+  - Shippo.sln
+  - Shippo/Utils/AnyDeserializer.cs
+  - Shippo/Utils/BigIntStrConverter.cs
+  - Shippo/Utils/DecimalStrConverter.cs
+  - Shippo/Utils/EnumConverter.cs
+  - Shippo/Utils/FlexibleObjectDeserializer.cs
+  - Shippo/Utils/HeaderSerializer.cs
+  - Shippo/Utils/IsoDateTimeSerializer.cs
+  - Shippo/Utils/RequestBodySerializer.cs
+  - Shippo/Utils/ResponseBodyDeserializer.cs
+  - Shippo/Utils/SecuritySerializer.cs
+  - Shippo/Utils/SpeakeasyHttpClient.cs
+  - Shippo/Utils/SpeakeasyMetadata.cs
+  - Shippo/Utils/URLBuilder.cs
+  - Shippo/Utils/Utilities.cs
+  - Shippo/Shippo.csproj
+  - Shippo/Models/Errors/SDKException.cs
+  - Shippo/Models/Requests/GetExampleRequest.cs
+  - Shippo/Models/Requests/GetExampleResponse.cs
+  - Shippo/Models/Requests/CreateExampleRequest.cs
+  - Shippo/Models/Requests/CreateExampleResponse.cs
+  - Shippo/Models/Components/HTTPMetadata.cs
+  - Shippo/Models/Components/ExampleBody.cs
+  - docs/Models/Requests/GetExampleRequest.md
+  - docs/Models/Requests/GetExampleResponse.md
+  - docs/Models/Requests/CreateExampleRequest.md
+  - docs/Models/Requests/CreateExampleResponse.md
+  - docs/Models/Components/HTTPMetadata.md
+  - docs/Models/Components/ExampleBody.md
+  - docs/sdks/shippo/README.md
+  - USAGE.md
+  - .gitattributes
