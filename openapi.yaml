@@ -23,10 +23,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExampleBody'
+              oneOf:
+                - $ref: '#/components/schemas/ExampleSimple'
+                - $ref: '#/components/schemas/ExampleComplex'
       responses:
         '201':
-          $ref: '#/components/schemas/ExampleBody'
+          $ref: '#/components/responses/exampleResponse'
 components:
   parameters:
     HeaderParam:
@@ -35,10 +37,41 @@ components:
       name: header_param
       schema:
         type: string
-  responses: {}
+  responses:
+    exampleResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: '#/components/schemas/ExampleSimple'
+              - $ref: '#/components/schemas/ExampleComplex'
+            discriminator:
+              propertyName: responseType
+              mapping:
+                simple: '#/components/schemas/ExampleSimple'
+                complex: '#/components/schemas/ExampleComplex'
   schemas:
     ExampleBody:
       type: object
       properties:
         field:
           type: string
+    ExampleSimple:
+      type: object
+      properties:
+        responseType:
+          type: string
+          enum: [ 'simple' ]
+        simple:
+          type: string
+    ExampleComplex:
+      type: object
+      properties:
+        responseType:
+          type: string
+          enum: [ 'complex' ]
+        complex:
+          type: string
+          
+    
