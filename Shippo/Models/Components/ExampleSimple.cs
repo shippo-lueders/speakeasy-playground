@@ -11,12 +11,16 @@
 namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
+    using Shippo.Models.Components;
     using Shippo.Utils;
     
-    public class ExampleBody
+    public class ExampleSimple
     {
 
-        [JsonProperty("field")]
-        public string? Field { get; set; }
+        [JsonProperty("responseType")]
+        public ResponseType? ResponseType { get; set; }
+
+        [JsonProperty("simple")]
+        public string? Simple { get; set; }
     }
 }

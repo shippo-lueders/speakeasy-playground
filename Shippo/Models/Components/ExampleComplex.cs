@@ -8,21 +8,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 #nullable enable
-namespace Shippo.Models.Requests
+namespace Shippo.Models.Components
 {
+    using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
     
-    public class CreateExampleRequest
+    public class ExampleComplex
     {
 
-        /// <summary>
-        /// The number of results to return per page (max 100)
-        /// </summary>
-        [SpeakeasyMetadata("header:style=simple,explode=false,name=header_param")]
-        public string? HeaderParam { get; set; }
+        [JsonProperty("responseType")]
+        public ExampleComplexResponseType? ResponseType { get; set; }
 
-        [SpeakeasyMetadata("request:mediaType=application/json")]
-        public CreateExampleRequestBody? RequestBody { get; set; }
+        [JsonProperty("complex")]
+        public string? Complex { get; set; }
     }
 }

@@ -1,18 +1,19 @@
 lockVersion: 2.0.0
 id: 6e4635b7-9ee3-4612-a072-a8e6b611de3e
 management:
-  docChecksum: 0a44e2afc0aecd53a8a72ec621fbfec7
+  docChecksum: e4d12840fbaa01008bdfdd49c5fcae2f
   docVersion: "1"
-  speakeasyVersion: 1.269.5
-  generationVersion: 2.312.1
-  releaseVersion: 0.0.1
-  configChecksum: 0771eeca522c9a9e3c8da85a82eba466
+  speakeasyVersion: 1.277.8
+  generationVersion: 2.319.10
+  releaseVersion: 0.2.1
+  configChecksum: b23119f8cd731f8a65ae77e12fec12f7
 features:
   csharp:
-    core: 3.7.0
-    flattening: 2.81.1
+    core: 3.8.3
+    flattening: 2.81.2
     globalServerURLs: 2.82.3
-    responseFormat: 0.0.1
+    responseFormat: 0.0.2
+    unions: 0.0.2
 generatedFiles:
   - Shippo/ShippoSDK.cs
   - global.json
@@ -26,7 +27,7 @@ generatedFiles:
   - Shippo/Utils/IsoDateTimeSerializer.cs
   - Shippo/Utils/RequestBodySerializer.cs
   - Shippo/Utils/ResponseBodyDeserializer.cs
-  - Shippo/Utils/SecuritySerializer.cs
+  - Shippo/Utils/SecurityMetadata.cs
   - Shippo/Utils/SpeakeasyHttpClient.cs
   - Shippo/Utils/SpeakeasyMetadata.cs
   - Shippo/Utils/URLBuilder.cs
@@ -35,16 +36,28 @@ generatedFiles:
   - Shippo/Models/Errors/SDKException.cs
   - Shippo/Models/Requests/GetExampleRequest.cs
   - Shippo/Models/Requests/GetExampleResponse.cs
+  - Shippo/Models/Requests/CreateExampleRequestBody.cs
   - Shippo/Models/Requests/CreateExampleRequest.cs
   - Shippo/Models/Requests/CreateExampleResponse.cs
   - Shippo/Models/Components/HTTPMetadata.cs
-  - Shippo/Models/Components/ExampleBody.cs
+  - Shippo/Models/Components/ExampleResponse.cs
+  - Shippo/Models/Components/ResponseType.cs
+  - Shippo/Models/Components/ExampleSimple.cs
+  - Shippo/Models/Components/ExampleComplexResponseType.cs
+  - Shippo/Models/Components/ExampleComplex.cs
   - docs/Models/Requests/GetExampleRequest.md
   - docs/Models/Requests/GetExampleResponse.md
+  - docs/Models/Requests/CreateExampleRequestBody.md
   - docs/Models/Requests/CreateExampleRequest.md
   - docs/Models/Requests/CreateExampleResponse.md
   - docs/Models/Components/HTTPMetadata.md
-  - docs/Models/Components/ExampleBody.md
+  - docs/Models/Components/ExampleResponse.md
+  - docs/Models/Components/ResponseType.md
+  - docs/Models/Components/ExampleSimple.md
+  - docs/Models/Components/ExampleComplexResponseType.md
+  - docs/Models/Components/ExampleComplex.md
   - docs/sdks/shippo/README.md
   - USAGE.md
   - .gitattributes
+  - Shippo/Hooks/SDKHooks.cs
+  - Shippo/Hooks/HookTypes.cs

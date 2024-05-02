@@ -11,7 +11,7 @@
 namespace Shippo
 {
     using Newtonsoft.Json;
-    using Shippo.Models.Components;
+    using Shippo.Hooks;
     using Shippo.Models.Errors;
     using Shippo.Models.Requests;
     using Shippo.Utils;
@@ -24,7 +24,7 @@ namespace Shippo
     public interface IShippoSDK
     {
         Task<GetExampleResponse> GetExampleAsync(string? headerParam = null);
-        Task<CreateExampleResponse> CreateExampleAsync(string? headerParam = null, ExampleBody? exampleBody = null);
+        Task<CreateExampleResponse> CreateExampleAsync(string? headerParam = null, CreateExampleRequestBody? requestBody = null);
     }
 
     public class SDKConfig
@@ -36,16 +36,28 @@ namespace Shippo
             "https://example.com",
         };
 
-        public string serverUrl = "";
-        public int serverIndex = 0;
+        public string ServerUrl = "";
+        public int ServerIndex = 0;
+        public SDKHooks hooks = new SDKHooks();
 
-        public string GetTemplatedServerDetails()
+        public string GetTemplatedServerUrl()
         {
-            if (!String.IsNullOrEmpty(this.serverUrl))
+            if (!String.IsNullOrEmpty(this.ServerUrl))
             {
-                return Utilities.TemplateUrl(Utilities.RemoveSuffix(this.serverUrl, "/"), new Dictionary<string, string>());
+                return Utilities.TemplateUrl(Utilities.RemoveSuffix(this.ServerUrl, "/"), new Dictionary<string, string>());
             }
-            return Utilities.TemplateUrl(SDKConfig.ServerList[this.serverIndex], new Dictionary<string, string>());
+            return Utilities.TemplateUrl(SDKConfig.ServerList[this.ServerIndex], new Dictionary<string, string>());
+        }
+
+        public ISpeakeasyHttpClient InitHooks(ISpeakeasyHttpClient client)
+        {
+            string preHooksUrl = GetTemplatedServerUrl();
+            var (postHooksUrl, postHooksClient) = this.hooks.SDKInit(preHooksUrl, client);
+            if (preHooksUrl != postHooksUrl)
+            {
+                this.ServerUrl = postHooksUrl;
+            }
+            return postHooksClient;
         }
     }
 
@@ -54,10 +66,10 @@ namespace Shippo
         public SDKConfig SDKConfiguration { get; private set; }
 
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.0.1";
-        private const string _sdkGenVersion = "2.312.1";
+        private const string _sdkVersion = "0.2.1";
+        private const string _sdkGenVersion = "2.319.10";
         private const string _openapiDocVersion = "1";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.0.1 2.312.1 1 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.2.1 2.319.10 1 Shippo";
         private string _serverUrl = "";
         private int _serverIndex = 0;
         private ISpeakeasyHttpClient _defaultClient;
@@ -86,10 +98,11 @@ namespace Shippo
 
             SDKConfiguration = new SDKConfig()
             {
-                serverIndex = _serverIndex,
-                serverUrl = _serverUrl
+                ServerIndex = _serverIndex,
+                ServerUrl = _serverUrl
             };
 
+            _defaultClient = SDKConfiguration.InitHooks(_defaultClient);
         }
 
         public async Task<GetExampleResponse> GetExampleAsync(string? headerParam = null)
@@ -98,7 +111,7 @@ namespace Shippo
             {
                 HeaderParam = headerParam,
             };
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerDetails();
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
             var urlString = baseUrl + "/example";
 
@@ -106,9 +119,38 @@ namespace Shippo
             httpRequest.Headers.Add("user-agent", _userAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            var client = _defaultClient;
+            var hookCtx = new HookContext("GetExample", null, null);
 
-            var httpResponse = await client.SendAsync(httpRequest);
+            httpRequest = await this.SDKConfiguration.hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _defaultClient.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                {
+                    var _httpResponse = await this.SDKConfiguration.hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
 
             var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
             int responseStatusCode = (int)httpResponse.StatusCode;
@@ -116,7 +158,7 @@ namespace Shippo
             {                
                 return new GetExampleResponse()
                 {
-                    HttpMeta = new HTTPMetadata()
+                    HttpMeta = new Models.Components.HTTPMetadata()
                     {
                         Response = httpResponse,
                         Request = httpRequest
@@ -133,14 +175,14 @@ namespace Shippo
             }
         }
 
-        public async Task<CreateExampleResponse> CreateExampleAsync(string? headerParam = null, ExampleBody? exampleBody = null)
+        public async Task<CreateExampleResponse> CreateExampleAsync(string? headerParam = null, CreateExampleRequestBody? requestBody = null)
         {
             var request = new CreateExampleRequest()
             {
                 HeaderParam = headerParam,
-                ExampleBody = exampleBody,
+                RequestBody = requestBody,
             };
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerDetails();
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
             var urlString = baseUrl + "/example";
 
@@ -148,28 +190,67 @@ namespace Shippo
             httpRequest.Headers.Add("user-agent", _userAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "ExampleBody", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
             }
 
-            var client = _defaultClient;
+            var hookCtx = new HookContext("CreateExample", null, null);
 
-            var httpResponse = await client.SendAsync(httpRequest);
+            httpRequest = await this.SDKConfiguration.hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _defaultClient.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                {
+                    var _httpResponse = await this.SDKConfiguration.hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
 
             var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
             int responseStatusCode = (int)httpResponse.StatusCode;
             if(responseStatusCode == 201)
-            {                
-                return new CreateExampleResponse()
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    HttpMeta = new HTTPMetadata()
+                    var obj = ResponseBodyDeserializer.Deserialize<ExampleResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new CreateExampleResponse()
                     {
-                        Response = httpResponse,
-                        Request = httpRequest
-                    }
-                };;
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.ExampleResponse = obj;
+                    return response;
+                }
+                else
+                {
+                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
+                }
             }
             else if(responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {

@@ -17,5 +17,21 @@ namespace Shippo.Models.Requests
     {
 
         public HTTPMetadata HttpMeta { get; set; } = default!;
+
+        public ExampleResponse? ExampleResponse { get; set; }
+        public ExampleSimple? GetExampleResponseSimple()
+        {
+            if v := this.ExampleResponse; v != nil {
+                return v.ExampleSimple;
+            }
+            return null 
+        }
+        public ExampleComplex? GetExampleResponseComplex()
+        {
+            if v := this.ExampleResponse; v != nil {
+                return v.ExampleComplex;
+            }
+            return null 
+        }
     }
 }
