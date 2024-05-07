@@ -15,10 +15,13 @@
 
 ```python
 import shippo
+from shippo.models import operations
 
-s = shippo.Shippo()
+s = shippo.Shippo(
+    header_param='<value>',
+)
 
-res = s.list(header_param='<value>')
+res = s.list(request=operations.ListRequest())
 
 if res is not None:
     # handle response
@@ -28,9 +31,9 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                          | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `header_param`                                     | *Optional[str]*                                    | :heavy_minus_sign:                                 | The number of results to return per page (max 100) |
+| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `request`                                                        | [operations.ListRequest](../../models/operations/listrequest.md) | :heavy_check_mark:                                               | The request object to use for the request.                       |
 
 
 ### Response
@@ -48,11 +51,12 @@ if res is not None:
 
 ```python
 import shippo
-from shippo.models import components
 
-s = shippo.Shippo()
+s = shippo.Shippo(
+    header_param='<value>',
+)
 
-res = s.create(header_param='<value>', example_body=components.ExampleBody())
+res = s.create(field='<value>')
 
 if res is not None:
     # handle response
@@ -62,10 +66,9 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `header_param`                                                             | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | The number of results to return per page (max 100)                         |
-| `example_body`                                                             | [Optional[components.ExampleBody]](../../models/components/examplebody.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `field`            | *Optional[str]*    | :heavy_minus_sign: | N/A                |
 
 
 ### Response
@@ -84,9 +87,11 @@ if res is not None:
 ```python
 import shippo
 
-s = shippo.Shippo()
+s = shippo.Shippo(
+    header_param='<value>',
+)
 
-res = s.get(example_id='<value>', header_param='<value>')
+res = s.get(example_id='<value>')
 
 if res is not None:
     # handle response
@@ -96,10 +101,9 @@ if res is not None:
 
 ### Parameters
 
-| Parameter                                          | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `example_id`                                       | *str*                                              | :heavy_check_mark:                                 | Object ID of the example                           |
-| `header_param`                                     | *Optional[str]*                                    | :heavy_minus_sign:                                 | The number of results to return per page (max 100) |
+| Parameter                | Type                     | Required                 | Description              |
+| ------------------------ | ------------------------ | ------------------------ | ------------------------ |
+| `example_id`             | *str*                    | :heavy_check_mark:       | Object ID of the example |
 
 
 ### Response

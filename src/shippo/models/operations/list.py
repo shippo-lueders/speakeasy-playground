@@ -6,8 +6,13 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class ListRequest:
+class ListGlobals:
     header_param: Optional[str] = dataclasses.field(default=None, metadata={'header': { 'field_name': 'header_param', 'style': 'simple', 'explode': False }})
     r"""The number of results to return per page (max 100)"""
     
 
+
+
+@dataclasses.dataclass
+class ListRequest:
+    pass

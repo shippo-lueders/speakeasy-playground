@@ -5,7 +5,7 @@ from .sdkconfiguration import SDKConfiguration
 from .utils.retries import RetryConfig
 from shippo import utils
 from shippo._hooks import AfterErrorContext, AfterSuccessContext, BeforeRequestContext, HookContext, SDKHooks
-from shippo.models import components, errors, operations
+from shippo.models import components, errors, internal, operations
 from typing import Dict, List, Optional
 
 class Shippo:
@@ -13,6 +13,7 @@ class Shippo:
     sdk_configuration: SDKConfiguration
 
     def __init__(self,
+                 header_param: str = None,
                  server_idx: Optional[int] = None,
                  server_url: Optional[str] = None,
                  url_params: Optional[Dict[str, str]] = None,
@@ -21,6 +22,8 @@ class Shippo:
                  ) -> None:
         """Instantiates the SDK configuring it with the provided parameters.
 
+        :param header_param: Configures the header_param parameter for all supported operations
+        :type header_param: str
         :param server_idx: The index of the server to use for all operations
         :type server_idx: int
         :param server_url: The server URL to use for all operations
@@ -39,9 +42,13 @@ class Shippo:
             if url_params is not None:
                 server_url = utils.template_url(server_url, url_params)
     
+        _globals = internal.Globals(
+            header_param=header_param,
+        )
 
         self.sdk_configuration = SDKConfiguration(
             client,
+            _globals,
             server_url,
             server_idx,
             retry_config=retry_config
@@ -58,25 +65,27 @@ class Shippo:
         self.sdk_configuration.__dict__['_hooks'] = hooks
 
 
-    def list(self, header_param: Optional[str] = None) -> List[components.ExampleBody]:
+    def list(self, request: operations.ListRequest) -> List[components.ExampleBody]:
         hook_ctx = HookContext(operation_id='List', oauth2_scopes=[], security_source=None)
-        request = operations.ListRequest(
-            header_param=header_param,
+        _globals = operations.ListGlobals(
+            header_param=self.sdk_configuration.globals.header_param,
         )
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = base_url + '/example'
+        url = utils.generate_url(base_url, '/example', request, _globals)
         
         headers = {}
+        query_params = {}
         
-        headers = { **utils.get_headers(request), **headers }
+        headers = { **utils.get_headers(request, _globals), **headers }
+        query_params = { **utils.get_query_params(request, _globals), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('GET', url, headers=headers))
+            req = client.prepare_request(requests_http.Request('GET', url, params=query_params, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -111,29 +120,34 @@ class Shippo:
 
 
 
-    def create(self, header_param: Optional[str] = None, example_body: Optional[components.ExampleBody] = None) -> components.ExampleBody:
+    def create(self, field: Optional[str] = None) -> components.ExampleBody:
         hook_ctx = HookContext(operation_id='Create', oauth2_scopes=[], security_source=None)
-        request = operations.CreateRequest(
-            header_param=header_param,
-            example_body=example_body,
+        request = components.ExampleBody(
+            field=field,
+        )
+        
+        _globals = operations.CreateGlobals(
+            header_param=self.sdk_configuration.globals.header_param,
         )
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = base_url + '/example'
+        url = utils.generate_url(base_url, '/example', request, _globals)
         
         headers = {}
+        query_params = {}
         
-        headers = { **utils.get_headers(request), **headers }
-        req_content_type, data, form = utils.serialize_request_body(request, operations.CreateRequest, "example_body", False, True, 'json')
+        headers = { **utils.get_headers(request, _globals), **headers }
+        req_content_type, data, form = utils.serialize_request_body(request, Optional[components.ExampleBody], "request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
+        query_params = { **utils.get_query_params(request, _globals), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('POST', url, data=data, files=form, headers=headers))
+            req = client.prepare_request(requests_http.Request('POST', url, params=query_params, data=data, files=form, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:
@@ -168,26 +182,31 @@ class Shippo:
 
 
 
-    def get(self, example_id: str, header_param: Optional[str] = None) -> components.ExampleBody:
+    def get(self, example_id: str) -> components.ExampleBody:
         hook_ctx = HookContext(operation_id='Get', oauth2_scopes=[], security_source=None)
         request = operations.GetRequest(
             example_id=example_id,
-            header_param=header_param,
+        )
+        
+        _globals = operations.GetGlobals(
+            header_param=self.sdk_configuration.globals.header_param,
         )
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(base_url, '/example/{ExampleId}', request)
+        url = utils.generate_url(base_url, '/example/{ExampleId}', request, _globals)
         
         headers = {}
+        query_params = {}
         
-        headers = { **utils.get_headers(request), **headers }
+        headers = { **utils.get_headers(request, _globals), **headers }
+        query_params = { **utils.get_query_params(request, _globals), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
         
         try:
-            req = client.prepare_request(requests_http.Request('GET', url, headers=headers))
+            req = client.prepare_request(requests_http.Request('GET', url, params=query_params, headers=headers))
             req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
             http_res = client.send(req)
         except Exception as e:

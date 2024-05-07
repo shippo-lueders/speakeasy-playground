@@ -6,6 +6,7 @@ from ._hooks import SDKHooks
 from .utils import utils
 from .utils.retries import RetryConfig
 from dataclasses import dataclass
+from shippo.models import internal
 from typing import Dict, Optional, Tuple
 
 
@@ -17,13 +18,14 @@ SERVERS = [
 @dataclass
 class SDKConfiguration:
     client: requests_http.Session
+    globals: internal.Globals
     server_url: Optional[str] = ''
     server_idx: Optional[int] = 0
     language: str = 'python'
     openapi_doc_version: str = '1'
-    sdk_version: str = '0.2.0'
+    sdk_version: str = '0.3.0'
     gen_version: str = '2.326.0'
-    user_agent: str = 'speakeasy-sdk/python 0.2.0 2.326.0 1 shippo-api-client'
+    user_agent: str = 'speakeasy-sdk/python 0.3.0 2.326.0 1 shippo-api-client'
     retry_config: Optional[RetryConfig] = None
 
     def __post_init__(self):

@@ -6,16 +6,8 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class GetGlobals:
+class Globals:
     header_param: Optional[str] = dataclasses.field(default=None, metadata={'header': { 'field_name': 'header_param', 'style': 'simple', 'explode': False }})
     r"""The number of results to return per page (max 100)"""
-    
-
-
-
-@dataclasses.dataclass
-class GetRequest:
-    example_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'ExampleId', 'style': 'simple', 'explode': False }})
-    r"""Object ID of the example"""
     
 

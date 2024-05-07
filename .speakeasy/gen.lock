@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: 6c12d170c242e5b96d25f70bd2e26b60
+  docChecksum: 927ef240345e16a052ec9716b1bee10b
   docVersion: "1"
   speakeasyVersion: 1.282.0
   generationVersion: 2.326.0
-  releaseVersion: 0.2.0
-  configChecksum: 08fd7c781284acd1b0a8456b28e813bf
+  releaseVersion: 0.3.0
+  configChecksum: aa4afeb0b332337030cb0561a39680a3
 features:
   python:
     additionalDependencies: 0.1.0
@@ -14,6 +14,8 @@ features:
     flattening: 2.81.1
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
+    globals: 2.82.1
+    hiddenGlobals: 0.1.0
     responseFormat: 0.1.0
     sdkHooks: 0.1.0
 generatedFiles:
@@ -29,16 +31,21 @@ generatedFiles:
   - src/shippo/models/errors/sdkerror.py
   - src/shippo/models/components/examplebody.py
   - src/shippo/models/operations/list.py
-  - src/shippo/models/operations/create.py
   - src/shippo/models/operations/get.py
+  - src/shippo/models/operations/create.py
+  - src/shippo/models/internal/globals.py
   - src/shippo/models/__init__.py
   - src/shippo/models/errors/__init__.py
   - src/shippo/models/components/__init__.py
   - src/shippo/models/operations/__init__.py
+  - src/shippo/models/internal/__init__.py
   - docs/models/components/examplebody.md
+  - docs/models/operations/listglobals.md
   - docs/models/operations/listrequest.md
-  - docs/models/operations/createrequest.md
+  - docs/models/operations/getglobals.md
   - docs/models/operations/getrequest.md
+  - docs/models/operations/createglobals.md
+  - docs/models/internal/globals.md
   - docs/sdks/shippo/README.md
   - USAGE.md
   - .gitattributes

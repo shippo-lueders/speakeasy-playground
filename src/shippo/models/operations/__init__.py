@@ -4,4 +4,4 @@ from .create import *
 from .get import *
 from .list import *
 
-__all__ = ["CreateRequest","GetRequest","ListRequest"]
+__all__ = ["CreateGlobals","GetGlobals","GetRequest","ListGlobals","ListRequest"]
