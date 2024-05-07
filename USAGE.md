@@ -4,10 +4,9 @@ import shippo
 
 s = shippo.Shippo()
 
+res = s.list(header_param='<value>')
 
-res = s.example(header_param='<value>')
-
-if res.example_body is not None:
+if res is not None:
     # handle response
     pass
 

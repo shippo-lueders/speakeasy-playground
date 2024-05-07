@@ -34,10 +34,9 @@ import shippo
 
 s = shippo.Shippo()
 
+res = s.list(header_param='<value>')
 
-res = s.example(header_param='<value>')
-
-if res.example_body is not None:
+if res is not None:
     # handle response
     pass
 
@@ -49,7 +48,9 @@ if res.example_body is not None:
 
 ### [Shippo SDK](docs/sdks/shippo/README.md)
 
-* [example](docs/sdks/shippo/README.md#example)
+* [list](docs/sdks/shippo/README.md#list)
+* [create](docs/sdks/shippo/README.md#create)
+* [get](docs/sdks/shippo/README.md#get)
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -69,15 +70,14 @@ from shippo.models import errors
 
 s = shippo.Shippo()
 
-
 res = None
 try:
-    res = s.example(header_param='<value>')
+    res = s.list(header_param='<value>')
 except errors.SDKError as e:
     # handle exception
     raise(e)
 
-if res.example_body is not None:
+if res is not None:
     # handle response
     pass
 
@@ -104,10 +104,9 @@ s = shippo.Shippo(
     server_idx=0,
 )
 
+res = s.list(header_param='<value>')
 
-res = s.example(header_param='<value>')
-
-if res.example_body is not None:
+if res is not None:
     # handle response
     pass
 
@@ -124,10 +123,9 @@ s = shippo.Shippo(
     server_url="https://example.com",
 )
 
+res = s.list(header_param='<value>')
 
-res = s.example(header_param='<value>')
-
-if res.example_body is not None:
+if res is not None:
     # handle response
     pass
 

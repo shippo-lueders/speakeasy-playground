@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 python:
-  version: 0.1.0
+  version: 0.2.0
   additionalDependencies:
     dependencies: {}
     extraDependencies:
@@ -33,6 +33,7 @@ python:
       webhooks: models/webhooks
   inputModelSuffix: input
   maxMethodParams: 4
+  methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: shippo-api-client
   projectUrls: {}
