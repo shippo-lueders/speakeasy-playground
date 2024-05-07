@@ -49,6 +49,7 @@ components:
       name: header_param
       schema:
         type: string
+      x-speakeasy-globals-hidden: true
   responses:
     exampleListResponse:
       description: ''
@@ -70,3 +71,6 @@ components:
       properties:
         field:
           type: string
+x-speakeasy-globals:
+  parameters:
+    - $ref: "#/components/parameters/HeaderParam"
