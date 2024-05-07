@@ -5,20 +5,42 @@ info:
   version: '1'
   description: ''
 servers:
-- url: https://example.com
+  - url: https://example.com
 paths:
   "/example":
     get:
-      operationId: Example
+      operationId: List
       parameters:
         - $ref: "#/components/parameters/HeaderParam"
       responses:
         '200':
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExampleBody'
+          $ref: '#/components/responses/exampleListResponse'
+    post:
+      operationId: Create
+      parameters:
+        - $ref: "#/components/parameters/HeaderParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExampleBody'
+      responses:
+        '201':
+          $ref: '#/components/responses/exampleResponse'
+  "/example/{ExampleId}":
+    get:
+      operationId: Get
+      parameters:
+        - description: Object ID of the example
+          in: path
+          name: ExampleId
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/HeaderParam"
+      responses:
+        '200':
+          $ref: '#/components/responses/exampleResponse'
 components:
   parameters:
     HeaderParam:
@@ -27,7 +49,21 @@ components:
       name: header_param
       schema:
         type: string
-  responses: {}
+  responses:
+    exampleListResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/ExampleBody'
+            type: array
+    exampleResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExampleBody'
   schemas:
     ExampleBody:
       type: object
