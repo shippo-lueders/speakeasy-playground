@@ -12,8 +12,7 @@ from typing import Optional
 @dataclasses.dataclass
 class ExampleCreateRequest:
     field: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field'), 'exclude': lambda f: f is None }})
-    enum_field: Optional[ValueSetEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enum_field'), 'exclude': lambda f: f is None }})
-    r"""Here are the docs for the field that represents a closed value set"""
     create_only_field: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('create_only_field'), 'exclude': lambda f: f is None }})
+    enum_field: Optional[ValueSetEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enum_field'), 'exclude': lambda f: f is None }})
     
 

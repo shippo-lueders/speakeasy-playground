@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: 5b060250fd3c018679669e3957263c00
+  docChecksum: 3db2383e5710f3c3c8b70516f5999510
   docVersion: "1"
   speakeasyVersion: 1.285.6
   generationVersion: 2.326.3
-  releaseVersion: 0.2.4
-  configChecksum: 470cea40a5eeec84cc930f6487f34224
+  releaseVersion: 0.2.5
+  configChecksum: c365e466223bec0054404737a30ec1b1
 features:
   python:
     additionalDependencies: 0.1.0
@@ -28,8 +28,8 @@ generatedFiles:
   - src/shippo/utils/utils.py
   - src/shippo/models/errors/sdkerror.py
   - src/shippo/models/components/examplebody.py
-  - src/shippo/models/components/valuesetenum.py
   - src/shippo/models/components/examplecreaterequest.py
+  - src/shippo/models/components/valuesetenum.py
   - src/shippo/models/operations/list.py
   - src/shippo/models/operations/create.py
   - src/shippo/models/operations/get.py
@@ -38,8 +38,8 @@ generatedFiles:
   - src/shippo/models/components/__init__.py
   - src/shippo/models/operations/__init__.py
   - docs/models/components/examplebody.md
-  - docs/models/components/valuesetenum.md
   - docs/models/components/examplecreaterequest.md
+  - docs/models/components/valuesetenum.md
   - docs/models/operations/listrequest.md
   - docs/models/operations/createrequest.md
   - docs/models/operations/getrequest.md
