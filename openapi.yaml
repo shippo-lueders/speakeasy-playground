@@ -70,23 +70,28 @@ components:
       properties:
         field:
           type: string
-        enum_field:
-          $ref: '#/components/schemas/ValueSetEnum'
     ExampleCreateRequest:
       allOf:
         - $ref: '#/components/schemas/ExampleBase'
         - properties:
             create_only_field:
               type: string
+            enum_field:
+              $ref: '#/components/schemas/ValueSetEnum'
     ExampleBody:
       allOf:
         - $ref: '#/components/schemas/ExampleBase'
         - properties:
             response_only_field:
               type: string
-    ValueSetEnum:
+            enum_field:
+              $ref: '#/components/schemas/ValueSet'
+    ValueSet:
       type: string
       description: Here are the docs for the field that represents a closed value set
-      enum:
-        - Value1
-        - Value2
+    ValueSetEnum:
+      allOf:
+        - $ref: '#/components/schemas/ValueSet'
+        - enum:
+          - Value1
+          - Value2
