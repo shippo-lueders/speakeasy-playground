@@ -111,11 +111,11 @@ class Shippo:
 
 
 
-    def create(self, header_param: Optional[str] = None, example_body: Optional[components.ExampleBody] = None) -> components.ExampleBody:
+    def create(self, header_param: Optional[str] = None, example_create_request: Optional[components.ExampleCreateRequest] = None) -> components.ExampleBody:
         hook_ctx = HookContext(operation_id='Create', oauth2_scopes=[], security_source=None)
         request = operations.CreateRequest(
             header_param=header_param,
-            example_body=example_body,
+            example_create_request=example_create_request,
         )
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -125,7 +125,7 @@ class Shippo:
         headers = {}
         
         headers = { **utils.get_headers(request), **headers }
-        req_content_type, data, form = utils.serialize_request_body(request, operations.CreateRequest, "example_body", False, True, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.CreateRequest, "example_create_request", False, True, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         headers['Accept'] = 'application/json'
