@@ -23,7 +23,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExampleBody'
+              $ref: '#/components/schemas/ExampleCreateRequest'
       responses:
         '201':
           $ref: '#/components/responses/exampleResponse'
@@ -65,8 +65,28 @@ components:
           schema:
             $ref: '#/components/schemas/ExampleBody'
   schemas:
-    ExampleBody:
+    ExampleBase:
       type: object
       properties:
         field:
           type: string
+        enum_field:
+          $ref: '#/components/schemas/ValueSetEnum'
+    ExampleCreateRequest:
+      allOf:
+        - $ref: '#/components/schemas/ExampleBase'
+        - properties:
+            create_only_field:
+              type: string
+    ExampleBody:
+      allOf:
+        - $ref: '#/components/schemas/ExampleBase'
+        - properties:
+            response_only_field:
+              type: string
+    ValueSetEnum:
+      type: string
+      description: Here are the docs for the field that represents a closed value set
+      enum:
+        - Value1
+        - Value2
