@@ -47,4 +47,11 @@ components:
       type: object
       properties:
         field:
+          oneOf:
+            - $ref: "#/components/schemas/ExampleObject"
+            - type: string
+    ExampleObject:
+      type: object
+      properties:
+        other_field:
           type: string
