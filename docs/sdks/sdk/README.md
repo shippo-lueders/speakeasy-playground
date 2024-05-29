@@ -39,7 +39,9 @@ public class Application {
                 .headerParam("<value>")
                 .call();
 
-            // handle response
+            if (res.exampleBody().isPresent()) {
+                // handle response
+            }
         } catch (org.openapis.openapi.models.errors.SDKError e) {
             // handle exception
             throw e;

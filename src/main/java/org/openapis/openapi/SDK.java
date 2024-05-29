@@ -5,11 +5,13 @@
 package org.openapis.openapi;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
@@ -20,6 +22,7 @@ import org.openapis.openapi.utils.HTTPRequest;
 import org.openapis.openapi.utils.Hook.AfterErrorContextImpl;
 import org.openapis.openapi.utils.Hook.AfterSuccessContextImpl;
 import org.openapis.openapi.utils.Hook.BeforeRequestContextImpl;
+import org.openapis.openapi.utils.JSON;
 import org.openapis.openapi.utils.Retries.NonRetryableException;
 import org.openapis.openapi.utils.RetryConfig;
 import org.openapis.openapi.utils.SerializedBody;
@@ -164,7 +167,7 @@ public class SDK implements
                 "/example");
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
@@ -210,8 +213,19 @@ public class SDK implements
         org.openapis.openapi.models.operations.GetExampleResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                org.openapis.openapi.models.components.ExampleBody _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<org.openapis.openapi.models.components.ExampleBody>() {});
+                _res.withExampleBody(java.util.Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
             // no content 

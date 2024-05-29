@@ -13,6 +13,7 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 import org.openapis.openapi.utils.Utils;
 
 public class GetExampleResponse implements org.openapis.openapi.utils.Response {
@@ -32,17 +33,29 @@ public class GetExampleResponse implements org.openapis.openapi.utils.Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
+    private Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody;
+
     @JsonCreator
     public GetExampleResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            HttpResponse<InputStream> rawResponse,
+            Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
+        Utils.checkNotNull(exampleBody, "exampleBody");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
+        this.exampleBody = exampleBody;
+    }
+    
+    public GetExampleResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
     }
 
     /**
@@ -67,6 +80,12 @@ public class GetExampleResponse implements org.openapis.openapi.utils.Response {
     @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<org.openapis.openapi.models.components.ExampleBody> exampleBody() {
+        return (Optional<org.openapis.openapi.models.components.ExampleBody>) exampleBody;
     }
 
     public final static Builder builder() {
@@ -99,6 +118,18 @@ public class GetExampleResponse implements org.openapis.openapi.utils.Response {
         this.rawResponse = rawResponse;
         return this;
     }
+
+    public GetExampleResponse withExampleBody(org.openapis.openapi.models.components.ExampleBody exampleBody) {
+        Utils.checkNotNull(exampleBody, "exampleBody");
+        this.exampleBody = Optional.ofNullable(exampleBody);
+        return this;
+    }
+
+    public GetExampleResponse withExampleBody(Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody) {
+        Utils.checkNotNull(exampleBody, "exampleBody");
+        this.exampleBody = exampleBody;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -112,7 +143,8 @@ public class GetExampleResponse implements org.openapis.openapi.utils.Response {
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            java.util.Objects.deepEquals(this.exampleBody, other.exampleBody);
     }
     
     @Override
@@ -120,7 +152,8 @@ public class GetExampleResponse implements org.openapis.openapi.utils.Response {
         return java.util.Objects.hash(
             contentType,
             statusCode,
-            rawResponse);
+            rawResponse,
+            exampleBody);
     }
     
     @Override
@@ -128,7 +161,8 @@ public class GetExampleResponse implements org.openapis.openapi.utils.Response {
         return Utils.toString(GetExampleResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse);
+                "rawResponse", rawResponse,
+                "exampleBody", exampleBody);
     }
     
     public final static class Builder {
@@ -137,7 +171,9 @@ public class GetExampleResponse implements org.openapis.openapi.utils.Response {
  
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;  
+        private HttpResponse<InputStream> rawResponse;
+ 
+        private Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -169,12 +205,25 @@ public class GetExampleResponse implements org.openapis.openapi.utils.Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
+        public Builder exampleBody(org.openapis.openapi.models.components.ExampleBody exampleBody) {
+            Utils.checkNotNull(exampleBody, "exampleBody");
+            this.exampleBody = Optional.ofNullable(exampleBody);
+            return this;
+        }
+
+        public Builder exampleBody(Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody) {
+            Utils.checkNotNull(exampleBody, "exampleBody");
+            this.exampleBody = exampleBody;
+            return this;
+        }
         
         public GetExampleResponse build() {
             return new GetExampleResponse(
                 contentType,
                 statusCode,
-                rawResponse);
+                rawResponse,
+                exampleBody);
         }
     }
 }

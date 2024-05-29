@@ -14,7 +14,7 @@ paths:
         - $ref: "#/components/parameters/HeaderParam"
       responses:
         '200':
-          $ref: '#/components/schemas/ExampleBody'
+          $ref: '#/components/responses/exampleResponse'
     post:
       operationId: CreateExample
       parameters:
@@ -35,7 +35,13 @@ components:
       name: header_param
       schema:
         type: string
-  responses: {}
+  responses:
+    exampleResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExampleBody'
   schemas:
     ExampleBody:
       type: object

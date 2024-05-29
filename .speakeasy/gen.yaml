@@ -12,8 +12,10 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 java:
-  version: 0.0.1
-  additionalDependencies: []
+  version: 0.2.0
+  additionalDependencies:
+    - testImplementation:org.spockframework:spock-core:2.3-groovy-3.0
+    - testImplementation:com.github.tomakehurst:wiremock:2.27.2
   artifactID: openapi
   clientServerStatusCodesAsErrors: true
   companyEmail: info@mycompany.com

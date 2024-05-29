@@ -25,7 +25,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'org.openapis.openapi:openapi:0.0.1'
+implementation 'org.openapis.openapi:openapi:0.2.0'
 ```
 
 Maven:
@@ -33,7 +33,7 @@ Maven:
 <dependency>
     <groupId>org.openapis.openapi</groupId>
     <artifactId>openapi</artifactId>
-    <version>0.0.1</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -84,7 +84,9 @@ public class Application {
                 .headerParam("<value>")
                 .call();
 
-            // handle response
+            if (res.exampleBody().isPresent()) {
+                // handle response
+            }
         } catch (org.openapis.openapi.models.errors.SDKError e) {
             // handle exception
             throw e;
@@ -144,7 +146,9 @@ public class Application {
                 .headerParam("<value>")
                 .call();
 
-            // handle response
+            if (res.exampleBody().isPresent()) {
+                // handle response
+            }
         } catch (org.openapis.openapi.models.errors.SDKError e) {
             // handle exception
             throw e;
@@ -198,7 +202,9 @@ public class Application {
                 .headerParam("<value>")
                 .call();
 
-            // handle response
+            if (res.exampleBody().isPresent()) {
+                // handle response
+            }
         } catch (org.openapis.openapi.models.errors.SDKError e) {
             // handle exception
             throw e;
@@ -242,7 +248,9 @@ public class Application {
                 .headerParam("<value>")
                 .call();
 
-            // handle response
+            if (res.exampleBody().isPresent()) {
+                // handle response
+            }
         } catch (org.openapis.openapi.models.errors.SDKError e) {
             // handle exception
             throw e;
