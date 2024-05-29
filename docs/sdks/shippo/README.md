@@ -32,7 +32,7 @@ var res = await sdk.GetExampleAsync(headerParam: "<value>");
 
 ### Response
 
-**[GetExampleResponse](../../Models/Requests/GetExampleResponse.md)**
+**[ExampleBody](../../Models/Components/ExampleBody.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -67,7 +67,7 @@ var res = await sdk.CreateExampleAsync(
 
 ### Response
 
-**[CreateExampleResponse](../../Models/Requests/CreateExampleResponse.md)**
+**[ExampleBody](../../Models/Components/ExampleBody.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
