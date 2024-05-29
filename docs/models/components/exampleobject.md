@@ -1,8 +1,8 @@
-# ExampleBody
+# ExampleObject
 
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `field`            | *components.Field* | :heavy_minus_sign: | N/A                |
+| `otherField`       | *string*           | :heavy_minus_sign: | N/A                |

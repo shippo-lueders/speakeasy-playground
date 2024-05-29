@@ -3,4 +3,5 @@
  */
 
 export * from "./examplebody";
+export * from "./exampleobject";
 export * from "./httpmetadata";

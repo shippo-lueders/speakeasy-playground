@@ -15,16 +15,12 @@ export type CreateExampleRequest = {
 
 export type CreateExampleResponse = {
     httpMeta: components.HTTPMetadata;
+    exampleBody?: components.ExampleBody | undefined;
 };
 
 /** @internal */
 export namespace CreateExampleRequest$ {
-    export type Inbound = {
-        header_param?: string | undefined;
-        ExampleBody?: components.ExampleBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateExampleRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateExampleRequest, z.ZodTypeDef, unknown> = z
         .object({
             header_param: z.string().optional(),
             ExampleBody: components.ExampleBody$.inboundSchema.optional(),
@@ -56,31 +52,32 @@ export namespace CreateExampleRequest$ {
 
 /** @internal */
 export namespace CreateExampleResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<CreateExampleResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateExampleResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
+            ExampleBody: components.ExampleBody$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
+                ...(v.ExampleBody === undefined ? null : { exampleBody: v.ExampleBody }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
+        ExampleBody?: components.ExampleBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateExampleResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
+            exampleBody: components.ExampleBody$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
+                ...(v.exampleBody === undefined ? null : { ExampleBody: v.exampleBody }),
             };
         });
 }

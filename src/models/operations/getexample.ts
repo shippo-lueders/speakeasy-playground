@@ -14,15 +14,12 @@ export type GetExampleRequest = {
 
 export type GetExampleResponse = {
     httpMeta: components.HTTPMetadata;
+    exampleBody?: components.ExampleBody | undefined;
 };
 
 /** @internal */
 export namespace GetExampleRequest$ {
-    export type Inbound = {
-        header_param?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetExampleRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetExampleRequest, z.ZodTypeDef, unknown> = z
         .object({
             header_param: z.string().optional(),
         })
@@ -49,31 +46,32 @@ export namespace GetExampleRequest$ {
 
 /** @internal */
 export namespace GetExampleResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<GetExampleResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetExampleResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
+            ExampleBody: components.ExampleBody$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
+                ...(v.ExampleBody === undefined ? null : { exampleBody: v.ExampleBody }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
+        ExampleBody?: components.ExampleBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetExampleResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
+            exampleBody: components.ExampleBody$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
+                ...(v.exampleBody === undefined ? null : { ExampleBody: v.exampleBody }),
             };
         });
 }

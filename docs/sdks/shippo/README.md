@@ -15,12 +15,10 @@
 ```typescript
 import { Shippo } from "shippo";
 
-async function run() {
-  const sdk = new Shippo();
+const shippo = new Shippo();
 
-  const headerParam = "<value>";
-  
-  const result = await sdk.getExample(headerParam);
+async function run() {
+  const result = await shippo.getExample("<value>");
 
   // Handle the result
   console.log(result)
@@ -40,7 +38,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetExampleResponse](../../models/operations/getexampleresponse.md)>**
+**Promise\<[operations.GetExampleResponse](../../models/operations/getexampleresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -54,13 +52,10 @@ run();
 ```typescript
 import { Shippo } from "shippo";
 
-async function run() {
-  const sdk = new Shippo();
+const shippo = new Shippo();
 
-  const headerParam = "<value>";
-  const exampleBody = {};
-  
-  const result = await sdk.createExample(headerParam, exampleBody);
+async function run() {
+  const result = await shippo.createExample("<value>", {});
 
   // Handle the result
   console.log(result)
@@ -81,7 +76,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateExampleResponse](../../models/operations/createexampleresponse.md)>**
+**Promise\<[operations.CreateExampleResponse](../../models/operations/createexampleresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
