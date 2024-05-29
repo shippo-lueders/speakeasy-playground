@@ -12,14 +12,9 @@ paths:
       operationId: Example
       parameters:
         - $ref: "#/components/parameters/HeaderParam"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExampleBody'
       responses:
         '200':
-          description: example
+          $ref: "#/components/responses/exampleResponse"
 components:
   parameters:
     HeaderParam:
@@ -28,10 +23,23 @@ components:
       name: header_param
       schema:
         type: string
-  responses: {}
+  responses:
+    exampleResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExampleBody'
   schemas:
     ExampleBody:
       type: object
       properties:
         field:
+          oneOf:
+            - $ref: "#/components/schemas/ExampleObject"
+            - type: string
+    ExampleObject:
+      type: object
+      properties:
+        other_field:
           type: string
