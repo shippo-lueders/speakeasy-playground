@@ -2,4 +2,4 @@
 
 from .example import *
 
-__all__ = ["ExampleRequest","ExampleResponse"]
+__all__ = ["ExampleRequest"]

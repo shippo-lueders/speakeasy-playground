@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 python:
-  version: 0.1.0
+  version: 0.3.0
   additionalDependencies:
     dependencies: {}
     extraDependencies:
@@ -37,4 +37,4 @@ python:
   outputModelSuffix: output
   packageName: shippo-api-client
   projectUrls: {}
-  responseFormat: envelope
+  responseFormat: flat

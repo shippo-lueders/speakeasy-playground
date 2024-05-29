@@ -31,12 +31,11 @@ pip install git+<UNSET>.git
 
 ```python
 import shippo
-from shippo.models import components
 
 s = shippo.Shippo()
 
 
-res = s.example(header_param='<value>', example_body=components.ExampleBody())
+res = s.example(header_param='<value>')
 
 if res is not None:
     # handle response
@@ -66,13 +65,13 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 ```python
 import shippo
-from shippo.models import components, errors
+from shippo.models import errors
 
 s = shippo.Shippo()
 
 res = None
 try:
-    res = s.example(header_param='<value>', example_body=components.ExampleBody())
+    res = s.example(header_param='<value>')
 
 except errors.SDKError as e:
     # handle exception
@@ -100,14 +99,13 @@ You can override the default server globally by passing a server index to the `s
 
 ```python
 import shippo
-from shippo.models import components
 
 s = shippo.Shippo(
     server_idx=0,
 )
 
 
-res = s.example(header_param='<value>', example_body=components.ExampleBody())
+res = s.example(header_param='<value>')
 
 if res is not None:
     # handle response
@@ -121,14 +119,13 @@ if res is not None:
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
 import shippo
-from shippo.models import components
 
 s = shippo.Shippo(
     server_url="https://example.com",
 )
 
 
-res = s.example(header_param='<value>', example_body=components.ExampleBody())
+res = s.example(header_param='<value>')
 
 if res is not None:
     # handle response
