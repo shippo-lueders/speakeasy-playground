@@ -14,9 +14,10 @@ class TestExample:
     @httpretty.activate
     def test_example(self, api: shippo.Shippo):
         httpretty.register_uri(
-            httpretty.GET, f"{BASE_URL}/example", status=200, content_type="application/json",
-            body='{"field": "value"}'
+            httpretty.GET, f"{BASE_URL}/example/1", status=200, content_type="application/json",
+            body='{"field": "one"}'
         )
 
-        response = api.example()
+        response = api.get("1")
+        response.field
         print(response)

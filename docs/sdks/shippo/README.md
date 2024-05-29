@@ -18,6 +18,7 @@ import shippo
 
 s = shippo.Shippo()
 
+
 res = s.list(header_param='<value>')
 
 if res is not None:
@@ -52,6 +53,7 @@ from shippo.models import components
 
 s = shippo.Shippo()
 
+
 res = s.create(header_param='<value>', example_body=components.ExampleBody())
 
 if res is not None:
@@ -85,6 +87,7 @@ if res is not None:
 import shippo
 
 s = shippo.Shippo()
+
 
 res = s.get(example_id='<value>', header_param='<value>')
 

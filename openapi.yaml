@@ -69,4 +69,16 @@ components:
       type: object
       properties:
         field:
-          type: string
+          $ref: "#/components/schemas/EnumSet"
+    FirstEnum:
+      type: string
+      enum:
+        - one
+    SecondEnum:
+      type: string
+      enum:
+        - two
+    EnumSet:
+      oneOf:
+        - $ref: "#/components/schemas/FirstEnum"
+        - $ref: "#/components/schemas/SecondEnum"
