@@ -35,11 +35,12 @@ import shippo
 s = shippo.Shippo()
 
 
-res = s.example(results_per_page=904965)
+res = s.example(header_param='<value>')
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -58,7 +59,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ### Example
 
@@ -68,17 +69,18 @@ from shippo.models import errors
 
 s = shippo.Shippo()
 
-
 res = None
 try:
-    res = s.example(results_per_page=904965)
+    res = s.example(header_param='<value>')
+
 except errors.SDKError as e:
     # handle exception
     raise(e)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End Error Handling [errors] -->
 
@@ -103,11 +105,12 @@ s = shippo.Shippo(
 )
 
 
-res = s.example(results_per_page=904965)
+res = s.example(header_param='<value>')
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 
@@ -122,11 +125,12 @@ s = shippo.Shippo(
 )
 
 
-res = s.example(results_per_page=904965)
+res = s.example(header_param='<value>')
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End Server Selection [server] -->
 
@@ -142,7 +146,7 @@ import requests
 
 http_client = requests.Session()
 http_client.headers.update({'x-custom-header': 'someValue'})
-s = shippo.Shippo(client: http_client)
+s = shippo.Shippo(client=http_client)
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

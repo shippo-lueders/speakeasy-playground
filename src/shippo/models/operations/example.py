@@ -2,25 +2,12 @@
 
 from __future__ import annotations
 import dataclasses
-import requests as requests_http
 from typing import Optional
 
 
 @dataclasses.dataclass
 class ExampleRequest:
-    results_per_page: Optional[int] = dataclasses.field(default=25, metadata={'query_param': { 'field_name': 'results_per_page', 'style': 'form', 'explode': True }})
+    header_param: Optional[str] = dataclasses.field(default=None, metadata={'header': { 'field_name': 'header_param', 'style': 'simple', 'explode': False }})
     r"""The number of results to return per page (max 100)"""
-    
-
-
-
-@dataclasses.dataclass
-class ExampleResponse:
-    content_type: str = dataclasses.field()
-    r"""HTTP response content type for this operation"""
-    status_code: int = dataclasses.field()
-    r"""HTTP response status code for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     
 
