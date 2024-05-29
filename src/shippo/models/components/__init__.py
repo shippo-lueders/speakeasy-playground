@@ -2,7 +2,5 @@
 
 from .enumset import *
 from .examplebody import *
-from .firstenum import *
-from .secondenum import *
 
 __all__ = ["EnumSet","ExampleBody","FirstEnum","SecondEnum"]

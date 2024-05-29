@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 import dataclasses
-from .enumset import EnumSet
 from dataclasses_json import Undefined, dataclass_json
 from shippo import utils
 from typing import Optional
@@ -11,6 +10,6 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ExampleBody:
-    field: Optional[EnumSet] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field'), 'exclude': lambda f: f is None }})
+    field: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field'), 'exclude': lambda f: f is None }})
     
 

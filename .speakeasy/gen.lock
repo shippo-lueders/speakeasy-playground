@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: 62397686b19fbf40b42287ddac73423b
+  docChecksum: 351d4c859d380778e54a96c6a10dd9c8
   docVersion: "1"
   speakeasyVersion: 1.296.1
   generationVersion: 2.338.1
-  releaseVersion: 0.5.0
-  configChecksum: ec2b402bd12bf42d7db574f5e808982d
+  releaseVersion: 0.6.0
+  configChecksum: 86b328057c6beef890bc8f4b86d3a0da
 features:
   python:
     additionalDependencies: 0.1.0
@@ -14,6 +14,7 @@ features:
     flattening: 2.81.1
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
+    includes: 2.81.1
     responseFormat: 0.1.0
     sdkHooks: 0.1.0
     unions: 2.82.7
@@ -30,8 +31,6 @@ generatedFiles:
   - src/shippo/models/errors/sdkerror.py
   - src/shippo/models/components/examplebody.py
   - src/shippo/models/components/enumset.py
-  - src/shippo/models/components/firstenum.py
-  - src/shippo/models/components/secondenum.py
   - src/shippo/models/operations/list.py
   - src/shippo/models/operations/create.py
   - src/shippo/models/operations/get.py
@@ -40,9 +39,9 @@ generatedFiles:
   - src/shippo/models/components/__init__.py
   - src/shippo/models/operations/__init__.py
   - docs/models/components/examplebody.md
-  - docs/models/components/enumset.md
-  - docs/models/components/firstenum.md
   - docs/models/components/secondenum.md
+  - docs/models/components/firstenum.md
+  - docs/models/components/enumset.md
   - docs/models/operations/listrequest.md
   - docs/models/operations/createrequest.md
   - docs/models/operations/getrequest.md
