@@ -3,6 +3,7 @@
 
 ## Fields
 
-| Field                                              | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `headerParam`                                      | *Optional<? extends String>*                       | :heavy_minus_sign:                                 | The number of results to return per page (max 100) |
+| Field                                                | Type                                                 | Required                                             | Description                                          | Example                                              |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `headerParam`                                        | *Optional<? extends String>*                         | :heavy_minus_sign:                                   | The number of results to return per page (max 100)   |                                                      |
+| `shippoApiVersion`                                   | *Optional<? extends String>*                         | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |

@@ -20,6 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class GetExampleRequestBuilder {
 
     private Optional<? extends String> headerParam = Optional.empty();
+    private Optional<? extends String> shippoApiVersion = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetExample sdk;
 
     public GetExampleRequestBuilder(SDKMethodInterfaces.MethodCallGetExample sdk) {
@@ -37,10 +38,23 @@ public class GetExampleRequestBuilder {
         this.headerParam = headerParam;
         return this;
     }
+                
+    public GetExampleRequestBuilder shippoApiVersion(String shippoApiVersion) {
+        Utils.checkNotNull(shippoApiVersion, "shippoApiVersion");
+        this.shippoApiVersion = Optional.of(shippoApiVersion);
+        return this;
+    }
+
+    public GetExampleRequestBuilder shippoApiVersion(Optional<? extends String> shippoApiVersion) {
+        Utils.checkNotNull(shippoApiVersion, "shippoApiVersion");
+        this.shippoApiVersion = shippoApiVersion;
+        return this;
+    }
 
     public GetExampleResponse call() throws Exception {
 
         return sdk.getExample(
-            headerParam);
+            headerParam,
+            shippoApiVersion);
     }
 }

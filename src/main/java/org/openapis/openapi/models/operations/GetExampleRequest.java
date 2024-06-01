@@ -24,15 +24,24 @@ public class GetExampleRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=header_param")
     private Optional<? extends String> headerParam;
 
+    /**
+     * String used to pick a non-default API version to use
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=SHIPPO-API-VERSION")
+    private Optional<? extends String> shippoApiVersion;
+
     @JsonCreator
     public GetExampleRequest(
-            Optional<? extends String> headerParam) {
+            Optional<? extends String> headerParam,
+            Optional<? extends String> shippoApiVersion) {
         Utils.checkNotNull(headerParam, "headerParam");
+        Utils.checkNotNull(shippoApiVersion, "shippoApiVersion");
         this.headerParam = headerParam;
+        this.shippoApiVersion = shippoApiVersion;
     }
     
     public GetExampleRequest() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -42,6 +51,15 @@ public class GetExampleRequest {
     @JsonIgnore
     public Optional<String> headerParam() {
         return (Optional<String>) headerParam;
+    }
+
+    /**
+     * String used to pick a non-default API version to use
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> shippoApiVersion() {
+        return (Optional<String>) shippoApiVersion;
     }
 
     public final static Builder builder() {
@@ -65,6 +83,24 @@ public class GetExampleRequest {
         this.headerParam = headerParam;
         return this;
     }
+
+    /**
+     * String used to pick a non-default API version to use
+     */
+    public GetExampleRequest withShippoApiVersion(String shippoApiVersion) {
+        Utils.checkNotNull(shippoApiVersion, "shippoApiVersion");
+        this.shippoApiVersion = Optional.ofNullable(shippoApiVersion);
+        return this;
+    }
+
+    /**
+     * String used to pick a non-default API version to use
+     */
+    public GetExampleRequest withShippoApiVersion(Optional<? extends String> shippoApiVersion) {
+        Utils.checkNotNull(shippoApiVersion, "shippoApiVersion");
+        this.shippoApiVersion = shippoApiVersion;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -76,24 +112,29 @@ public class GetExampleRequest {
         }
         GetExampleRequest other = (GetExampleRequest) o;
         return 
-            java.util.Objects.deepEquals(this.headerParam, other.headerParam);
+            java.util.Objects.deepEquals(this.headerParam, other.headerParam) &&
+            java.util.Objects.deepEquals(this.shippoApiVersion, other.shippoApiVersion);
     }
     
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            headerParam);
+            headerParam,
+            shippoApiVersion);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetExampleRequest.class,
-                "headerParam", headerParam);
+                "headerParam", headerParam,
+                "shippoApiVersion", shippoApiVersion);
     }
     
     public final static class Builder {
  
-        private Optional<? extends String> headerParam = Optional.empty();  
+        private Optional<? extends String> headerParam = Optional.empty();
+ 
+        private Optional<? extends String> shippoApiVersion = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -116,10 +157,29 @@ public class GetExampleRequest {
             this.headerParam = headerParam;
             return this;
         }
+
+        /**
+         * String used to pick a non-default API version to use
+         */
+        public Builder shippoApiVersion(String shippoApiVersion) {
+            Utils.checkNotNull(shippoApiVersion, "shippoApiVersion");
+            this.shippoApiVersion = Optional.ofNullable(shippoApiVersion);
+            return this;
+        }
+
+        /**
+         * String used to pick a non-default API version to use
+         */
+        public Builder shippoApiVersion(Optional<? extends String> shippoApiVersion) {
+            Utils.checkNotNull(shippoApiVersion, "shippoApiVersion");
+            this.shippoApiVersion = shippoApiVersion;
+            return this;
+        }
         
         public GetExampleRequest build() {
             return new GetExampleRequest(
-                headerParam);
+                headerParam,
+                shippoApiVersion);
         }
     }
 }

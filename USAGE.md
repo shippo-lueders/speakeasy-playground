@@ -20,10 +20,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
+                .shippoApiVersion("2018-02-08")
                 .build();
 
             GetExampleResponse res = sdk.getExample()
                 .headerParam("<value>")
+                .shippoApiVersion("2018-02-08")
                 .call();
 
             if (res.exampleBody().isPresent()) {

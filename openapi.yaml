@@ -12,6 +12,7 @@ paths:
       operationId: GetExample
       parameters:
         - $ref: "#/components/parameters/HeaderParam"
+        - $ref: "#/components/parameters/ShippoApiVersionHeader"
       responses:
         '200':
           $ref: '#/components/responses/exampleResponse'
@@ -35,6 +36,13 @@ components:
       name: header_param
       schema:
         type: string
+    ShippoApiVersionHeader:
+      description: String used to pick a non-default API version to use
+      in: header
+      name: SHIPPO-API-VERSION
+      schema:
+        type: string
+        example: '2018-02-08'
   responses:
     exampleResponse:
       description: ''
@@ -48,3 +56,6 @@ components:
       properties:
         field:
           type: string
+x-speakeasy-globals:
+  parameters:
+    - $ref: '#/components/parameters/ShippoApiVersionHeader'

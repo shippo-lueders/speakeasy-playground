@@ -25,7 +25,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'org.openapis.openapi:openapi:0.2.0'
+implementation 'org.openapis.openapi:openapi:0.3.1'
 ```
 
 Maven:
@@ -33,7 +33,7 @@ Maven:
 <dependency>
     <groupId>org.openapis.openapi</groupId>
     <artifactId>openapi</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.1</version>
 </dependency>
 ```
 
@@ -78,10 +78,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
+                .shippoApiVersion("2018-02-08")
                 .build();
 
             GetExampleResponse res = sdk.getExample()
                 .headerParam("<value>")
+                .shippoApiVersion("2018-02-08")
                 .call();
 
             if (res.exampleBody().isPresent()) {
@@ -140,10 +142,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
+                .shippoApiVersion("2018-02-08")
                 .build();
 
             GetExampleResponse res = sdk.getExample()
                 .headerParam("<value>")
+                .shippoApiVersion("2018-02-08")
                 .call();
 
             if (res.exampleBody().isPresent()) {
@@ -196,10 +200,12 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .serverIndex(0)
+                .shippoApiVersion("2018-02-08")
                 .build();
 
             GetExampleResponse res = sdk.getExample()
                 .headerParam("<value>")
+                .shippoApiVersion("2018-02-08")
                 .call();
 
             if (res.exampleBody().isPresent()) {
@@ -242,10 +248,12 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .serverURL("https://example.com")
+                .shippoApiVersion("2018-02-08")
                 .build();
 
             GetExampleResponse res = sdk.getExample()
                 .headerParam("<value>")
+                .shippoApiVersion("2018-02-08")
                 .call();
 
             if (res.exampleBody().isPresent()) {

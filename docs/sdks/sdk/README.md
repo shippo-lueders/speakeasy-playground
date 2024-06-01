@@ -33,10 +33,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
+                .shippoApiVersion("2018-02-08")
                 .build();
 
             GetExampleResponse res = sdk.getExample()
                 .headerParam("<value>")
+                .shippoApiVersion("2018-02-08")
                 .call();
 
             if (res.exampleBody().isPresent()) {
@@ -55,9 +57,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                          | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `headerParam`                                      | *Optional<? extends String>*                       | :heavy_minus_sign:                                 | The number of results to return per page (max 100) |
+| Parameter                                            | Type                                                 | Required                                             | Description                                          | Example                                              |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `headerParam`                                        | *Optional<? extends String>*                         | :heavy_minus_sign:                                   | The number of results to return per page (max 100)   |                                                      |
+| `shippoApiVersion`                                   | *Optional<? extends String>*                         | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
 
 
 ### Response
@@ -94,6 +97,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
+                .shippoApiVersion("2018-02-08")
                 .build();
 
             CreateExampleResponse res = sdk.createExample()

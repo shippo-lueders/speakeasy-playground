@@ -16,7 +16,8 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetExample {
         org.openapis.openapi.models.operations.GetExampleResponse getExample(
-            Optional<? extends String> headerParam) throws Exception;
+            Optional<? extends String> headerParam,
+            Optional<? extends String> shippoApiVersion) throws Exception;
     }
 
 

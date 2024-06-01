@@ -7,6 +7,8 @@ package org.openapis.openapi;
 import org.openapis.openapi.utils.Hook.SdkInitData;
 import org.openapis.openapi.utils.HTTPClient;
 import org.openapis.openapi.utils.RetryConfig;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Optional;
 
 class SDKConfiguration {
@@ -21,9 +23,9 @@ class SDKConfiguration {
     public int serverIdx = 0;
     public String language = "java";
     public String openapiDocVersion = "1";
-    public String sdkVersion = "0.2.0";
+    public String sdkVersion = "0.3.1";
     public String genVersion = "2.338.1";
-    public String userAgent = "speakeasy-sdk/java 0.2.0 2.338.1 1 org.openapis.openapi";
+    public String userAgent = "speakeasy-sdk/java 0.3.1 2.338.1 1 org.openapis.openapi";
 
     private org.openapis.openapi.utils.Hooks _hooks = new org.openapis.openapi.utils.Hooks();
 
@@ -46,7 +48,9 @@ class SDKConfiguration {
         this.defaultClient = data.client();
     }
 
-    
+    public Map<String, Map<String, Map<String, java.lang.Object>>> globals = new HashMap<>(){{
+        put("parameters", new HashMap<>());
+    }};
     
     public Optional<RetryConfig> retryConfig = Optional.empty();
 }

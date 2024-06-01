@@ -110,6 +110,22 @@ public class SDK implements
             this.sdkConfiguration.retryConfig = Optional.of(retryConfig);
             return this;
         }
+        /**
+         * Allows setting the shippoApiVersion parameter for all supported operations.
+         *
+         * @param shippoApiVersion The value to set.
+         * @return The builder instance.
+         */
+        public Builder shippoApiVersion(String shippoApiVersion) {
+            if (!this.sdkConfiguration.globals.get("parameters").containsKey("header")) {
+                this.sdkConfiguration.globals.get("parameters").put("header", new java.util.HashMap<>());
+            }
+
+            this.sdkConfiguration.globals.get("parameters").get("header").put("shippoApiVersion", shippoApiVersion);
+
+            return this;
+        }
+        
         // Visible for testing, will be accessed via reflection
         void _hooks(org.openapis.openapi.utils.Hooks hooks) {
             sdkConfiguration.setHooks(hooks);    
@@ -151,14 +167,16 @@ public class SDK implements
     }
 
     public org.openapis.openapi.models.operations.GetExampleResponse getExampleDirect() throws Exception {
-        return getExample(Optional.empty());
+        return getExample(Optional.empty(), Optional.empty());
     }
     public org.openapis.openapi.models.operations.GetExampleResponse getExample(
-            Optional<? extends String> headerParam) throws Exception {
+            Optional<? extends String> headerParam,
+            Optional<? extends String> shippoApiVersion) throws Exception {
         org.openapis.openapi.models.operations.GetExampleRequest request =
             org.openapis.openapi.models.operations.GetExampleRequest
                 .builder()
                 .headerParam(headerParam)
+                .shippoApiVersion(shippoApiVersion)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
@@ -170,7 +188,7 @@ public class SDK implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
 
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
@@ -273,7 +291,7 @@ public class SDK implements
         _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
 
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
