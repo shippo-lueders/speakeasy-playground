@@ -43,6 +43,7 @@ components:
       schema:
         type: string
         example: '2018-02-08'
+      x-speakeasy-globals-hidden: true
   responses:
     exampleResponse:
       description: ''

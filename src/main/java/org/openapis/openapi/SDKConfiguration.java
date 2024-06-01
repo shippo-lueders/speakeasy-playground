@@ -23,9 +23,9 @@ class SDKConfiguration {
     public int serverIdx = 0;
     public String language = "java";
     public String openapiDocVersion = "1";
-    public String sdkVersion = "0.3.1";
+    public String sdkVersion = "0.3.2";
     public String genVersion = "2.338.1";
-    public String userAgent = "speakeasy-sdk/java 0.3.1 2.338.1 1 org.openapis.openapi";
+    public String userAgent = "speakeasy-sdk/java 0.3.2 2.338.1 1 org.openapis.openapi";
 
     private org.openapis.openapi.utils.Hooks _hooks = new org.openapis.openapi.utils.Hooks();
 
