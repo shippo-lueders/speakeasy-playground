@@ -2,8 +2,8 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
-    id 'groovy'
 }
+
 
 compileJava.options.encoding = "UTF-8"
 compileJava.options.compilerArgs += '-Xlint:unchecked'
@@ -31,6 +31,5 @@ dependencies {
     implementation 'commons-io:commons-io:2.15.1'
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
+
+apply from: 'build-extra.gradle'
