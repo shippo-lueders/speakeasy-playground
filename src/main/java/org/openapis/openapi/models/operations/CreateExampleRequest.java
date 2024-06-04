@@ -25,20 +25,21 @@ public class CreateExampleRequest {
     private Optional<? extends String> headerParam;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody;
+    private org.openapis.openapi.models.components.ExampleBody exampleBody;
 
     @JsonCreator
     public CreateExampleRequest(
             Optional<? extends String> headerParam,
-            Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody) {
+            org.openapis.openapi.models.components.ExampleBody exampleBody) {
         Utils.checkNotNull(headerParam, "headerParam");
         Utils.checkNotNull(exampleBody, "exampleBody");
         this.headerParam = headerParam;
         this.exampleBody = exampleBody;
     }
     
-    public CreateExampleRequest() {
-        this(Optional.empty(), Optional.empty());
+    public CreateExampleRequest(
+            org.openapis.openapi.models.components.ExampleBody exampleBody) {
+        this(Optional.empty(), exampleBody);
     }
 
     /**
@@ -50,10 +51,9 @@ public class CreateExampleRequest {
         return (Optional<String>) headerParam;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<org.openapis.openapi.models.components.ExampleBody> exampleBody() {
-        return (Optional<org.openapis.openapi.models.components.ExampleBody>) exampleBody;
+    public org.openapis.openapi.models.components.ExampleBody exampleBody() {
+        return exampleBody;
     }
 
     public final static Builder builder() {
@@ -79,12 +79,6 @@ public class CreateExampleRequest {
     }
 
     public CreateExampleRequest withExampleBody(org.openapis.openapi.models.components.ExampleBody exampleBody) {
-        Utils.checkNotNull(exampleBody, "exampleBody");
-        this.exampleBody = Optional.ofNullable(exampleBody);
-        return this;
-    }
-
-    public CreateExampleRequest withExampleBody(Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody) {
         Utils.checkNotNull(exampleBody, "exampleBody");
         this.exampleBody = exampleBody;
         return this;
@@ -122,7 +116,7 @@ public class CreateExampleRequest {
  
         private Optional<? extends String> headerParam = Optional.empty();
  
-        private Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody = Optional.empty();  
+        private org.openapis.openapi.models.components.ExampleBody exampleBody;  
         
         private Builder() {
           // force use of static builder() method
@@ -147,12 +141,6 @@ public class CreateExampleRequest {
         }
 
         public Builder exampleBody(org.openapis.openapi.models.components.ExampleBody exampleBody) {
-            Utils.checkNotNull(exampleBody, "exampleBody");
-            this.exampleBody = Optional.ofNullable(exampleBody);
-            return this;
-        }
-
-        public Builder exampleBody(Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody) {
             Utils.checkNotNull(exampleBody, "exampleBody");
             this.exampleBody = exampleBody;
             return this;

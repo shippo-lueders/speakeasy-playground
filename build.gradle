@@ -4,7 +4,6 @@ plugins {
     id 'java-library'
 }
 
-
 compileJava.options.encoding = "UTF-8"
 compileJava.options.compilerArgs += '-Xlint:unchecked'
 compileTestJava.options.encoding = "UTF-8"
@@ -32,4 +31,3 @@ dependencies {
 }
 
 
-apply from: 'build-extra.gradle'

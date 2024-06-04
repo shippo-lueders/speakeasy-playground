@@ -246,12 +246,13 @@ public class SDK implements
         return new org.openapis.openapi.models.operations.CreateExampleRequestBuilder(this);
     }
 
-    public org.openapis.openapi.models.operations.CreateExampleResponse createExampleDirect() throws Exception {
-        return createExample(Optional.empty(), Optional.empty());
+    public org.openapis.openapi.models.operations.CreateExampleResponse createExample(
+            org.openapis.openapi.models.components.ExampleBody exampleBody) throws Exception {
+        return createExample(Optional.empty(), exampleBody);
     }
     public org.openapis.openapi.models.operations.CreateExampleResponse createExample(
             Optional<? extends String> headerParam,
-            Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody) throws Exception {
+            org.openapis.openapi.models.components.ExampleBody exampleBody) throws Exception {
         org.openapis.openapi.models.operations.CreateExampleRequest request =
             org.openapis.openapi.models.operations.CreateExampleRequest
                 .builder()
@@ -269,6 +270,9 @@ public class SDK implements
             new TypeReference<java.lang.Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, "exampleBody", "json", false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 

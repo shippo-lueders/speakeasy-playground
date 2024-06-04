@@ -23,7 +23,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallCreateExample {
         org.openapis.openapi.models.operations.CreateExampleResponse createExample(
             Optional<? extends String> headerParam,
-            Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody) throws Exception;
+            org.openapis.openapi.models.components.ExampleBody exampleBody) throws Exception;
     }
 
 }

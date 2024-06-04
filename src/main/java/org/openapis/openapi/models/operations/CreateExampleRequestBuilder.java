@@ -20,7 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class CreateExampleRequestBuilder {
 
     private Optional<? extends String> headerParam = Optional.empty();
-    private Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody = Optional.empty();
+    private org.openapis.openapi.models.components.ExampleBody exampleBody;
     private final SDKMethodInterfaces.MethodCallCreateExample sdk;
 
     public CreateExampleRequestBuilder(SDKMethodInterfaces.MethodCallCreateExample sdk) {
@@ -38,14 +38,8 @@ public class CreateExampleRequestBuilder {
         this.headerParam = headerParam;
         return this;
     }
-                
-    public CreateExampleRequestBuilder exampleBody(org.openapis.openapi.models.components.ExampleBody exampleBody) {
-        Utils.checkNotNull(exampleBody, "exampleBody");
-        this.exampleBody = Optional.of(exampleBody);
-        return this;
-    }
 
-    public CreateExampleRequestBuilder exampleBody(Optional<? extends org.openapis.openapi.models.components.ExampleBody> exampleBody) {
+    public CreateExampleRequestBuilder exampleBody(org.openapis.openapi.models.components.ExampleBody exampleBody) {
         Utils.checkNotNull(exampleBody, "exampleBody");
         this.exampleBody = exampleBody;
         return this;
