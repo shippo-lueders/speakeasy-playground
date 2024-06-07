@@ -69,7 +69,7 @@ components:
       type: object
       properties:
         field:
-          type: string
+          $ref: '#/components/schemas/EnumSet'
     FirstEnum:
       type: string
       enum:

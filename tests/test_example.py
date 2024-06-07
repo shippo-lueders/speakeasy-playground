@@ -2,6 +2,8 @@ import httpretty
 import pytest
 import shippo
 
+from shippo.models.components import EnumSet
+
 BASE_URL = "http://localhost:9500"
 
 
@@ -19,5 +21,4 @@ class TestExample:
         )
 
         response = api.get("1")
-        response.field
         print(response)

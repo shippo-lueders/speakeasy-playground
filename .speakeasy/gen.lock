@@ -1,16 +1,16 @@
 lockVersion: 2.0.0
 id: f973dc21-d1bd-4e48-971a-a3918272099b
 management:
-  docChecksum: 351d4c859d380778e54a96c6a10dd9c8
+  docChecksum: 4d457d4146b6552070083b8fd53922a2
   docVersion: "1"
-  speakeasyVersion: 1.296.1
-  generationVersion: 2.338.1
-  releaseVersion: 0.6.0
-  configChecksum: 86b328057c6beef890bc8f4b86d3a0da
+  speakeasyVersion: 1.300.1
+  generationVersion: 2.339.1
+  releaseVersion: 0.6.1
+  configChecksum: b74311ccf357729c505c223d81386ca2
 features:
   python:
     additionalDependencies: 0.1.0
-    core: 4.6.8
+    core: 4.6.9
     flattening: 2.81.1
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
