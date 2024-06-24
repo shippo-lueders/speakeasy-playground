@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6dfd6e8b-0984-4a77-b9b7-6a03dbb13de8
 management:
-  docChecksum: 11cd31e9281e877b1e7d129a5669afc0
+  docChecksum: f3b0d53f0cd6525cabe6b350fbdea4b8
   docVersion: "1"
   speakeasyVersion: 1.315.1
   generationVersion: 2.352.0
-  releaseVersion: 0.4.0
-  configChecksum: d49d647d60760a472dac24c75ab112fa
+  releaseVersion: 0.5.0
+  configChecksum: 9d6d69a8a03ba9518d59f968d3e916fa
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -16,6 +16,7 @@ features:
     globalServerURLs: 2.82.4
     responseFormat: 0.2.3
     sdkHooks: 0.1.0
+    webhooks: 1.0.0
 generatedFiles:
   - src/sdk/webhooks.ts
   - src/sdk/sdk.ts
@@ -51,9 +52,11 @@ generatedFiles:
   - src/models/operations/listwebhooks.ts
   - src/models/components/examplebody.ts
   - src/models/components/httpmetadata.ts
+  - src/models/webhooks/newpetevent.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
   - src/models/components/index.ts
+  - src/models/webhooks/index.ts
   - docs/models/operations/getexamplerequest.md
   - docs/models/operations/getexampleresponse.md
   - docs/models/operations/createexamplerequest.md
@@ -63,6 +66,7 @@ generatedFiles:
   - docs/models/operations/listwebhooksresponse.md
   - docs/models/components/examplebody.md
   - docs/models/components/httpmetadata.md
+  - docs/models/webhooks/newpeteventresponse.md
   - docs/sdks/shippo/README.md
   - docs/sdks/webhooks/README.md
   - USAGE.md
