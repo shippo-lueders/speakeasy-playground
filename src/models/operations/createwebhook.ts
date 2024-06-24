@@ -6,7 +6,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 import * as z from "zod";
 
-export type CreateExampleRequest = {
+export type CreateWebhookRequest = {
     /**
      * The number of results to return per page (max 100)
      */
@@ -14,14 +14,14 @@ export type CreateExampleRequest = {
     exampleBody?: components.ExampleBody | undefined;
 };
 
-export type CreateExampleResponse = {
+export type CreateWebhookResponse = {
     httpMeta: components.HTTPMetadata;
     exampleBody?: components.ExampleBody | undefined;
 };
 
 /** @internal */
-export namespace CreateExampleRequest$ {
-    export const inboundSchema: z.ZodType<CreateExampleRequest, z.ZodTypeDef, unknown> = z
+export namespace CreateWebhookRequest$ {
+    export const inboundSchema: z.ZodType<CreateWebhookRequest, z.ZodTypeDef, unknown> = z
         .object({
             header_param: z.string().optional(),
             ExampleBody: components.ExampleBody$.inboundSchema.optional(),
@@ -38,7 +38,7 @@ export namespace CreateExampleRequest$ {
         ExampleBody?: components.ExampleBody$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateExampleRequest> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateWebhookRequest> = z
         .object({
             headerParam: z.string().optional(),
             exampleBody: components.ExampleBody$.outboundSchema.optional(),
@@ -52,8 +52,8 @@ export namespace CreateExampleRequest$ {
 }
 
 /** @internal */
-export namespace CreateExampleResponse$ {
-    export const inboundSchema: z.ZodType<CreateExampleResponse, z.ZodTypeDef, unknown> = z
+export namespace CreateWebhookResponse$ {
+    export const inboundSchema: z.ZodType<CreateWebhookResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
             ExampleBody: components.ExampleBody$.inboundSchema.optional(),
@@ -70,7 +70,7 @@ export namespace CreateExampleResponse$ {
         ExampleBody?: components.ExampleBody$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateExampleResponse> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateWebhookResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
             exampleBody: components.ExampleBody$.outboundSchema.optional(),

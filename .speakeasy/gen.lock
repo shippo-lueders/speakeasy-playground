@@ -1,24 +1,25 @@
 lockVersion: 2.0.0
 id: 6dfd6e8b-0984-4a77-b9b7-6a03dbb13de8
 management:
-  docChecksum: 17a838197a319ca222602f3c0efe8c30
+  docChecksum: 11cd31e9281e877b1e7d129a5669afc0
   docVersion: "1"
-  speakeasyVersion: 1.308.1
-  generationVersion: 2.342.6
-  releaseVersion: 0.1.0
-  configChecksum: 8e99ac81440f4ab5293fcf50f984ea6c
+  speakeasyVersion: 1.315.1
+  generationVersion: 2.352.0
+  releaseVersion: 0.4.0
+  configChecksum: d49d647d60760a472dac24c75ab112fa
 features:
   typescript:
     additionalDependencies: 0.1.0
-    core: 3.9.14
+    core: 3.10.2
     flattening: 2.81.1
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.4
     responseFormat: 0.2.3
     sdkHooks: 0.1.0
 generatedFiles:
+  - src/sdk/webhooks.ts
   - src/sdk/sdk.ts
-  - .eslintrc.js
+  - .eslintrc.cjs
   - .npmignore
   - RUNTIMES.md
   - jsr.json
@@ -46,6 +47,8 @@ generatedFiles:
   - tsconfig.json
   - src/models/operations/getexample.ts
   - src/models/operations/createexample.ts
+  - src/models/operations/createwebhook.ts
+  - src/models/operations/listwebhooks.ts
   - src/models/components/examplebody.ts
   - src/models/components/httpmetadata.ts
   - src/models/errors/index.ts
@@ -55,9 +58,13 @@ generatedFiles:
   - docs/models/operations/getexampleresponse.md
   - docs/models/operations/createexamplerequest.md
   - docs/models/operations/createexampleresponse.md
+  - docs/models/operations/createwebhookrequest.md
+  - docs/models/operations/createwebhookresponse.md
+  - docs/models/operations/listwebhooksresponse.md
   - docs/models/components/examplebody.md
   - docs/models/components/httpmetadata.md
   - docs/sdks/shippo/README.md
+  - docs/sdks/webhooks/README.md
   - USAGE.md
   - .gitattributes
   - src/hooks/hooks.ts

@@ -25,10 +25,25 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 npm add <UNSET>
 ```
 
+### PNPM
+
+```bash
+pnpm add <UNSET>
+```
+
+### Bun
+
+```bash
+bun add <UNSET>
+```
+
 ### Yarn
 
 ```bash
-yarn add <UNSET>
+yarn add <UNSET> zod
+
+# Note that Yarn does not install peer dependencies automatically. You will need
+# to install zod as shown above.
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -67,6 +82,11 @@ run();
 
 * [getExample](docs/sdks/shippo/README.md#getexample)
 * [createExample](docs/sdks/shippo/README.md#createexample)
+* [createWebhook](docs/sdks/shippo/README.md#createwebhook)
+
+### [webhooks](docs/sdks/webhooks/README.md)
+
+* [listWebhooks](docs/sdks/webhooks/README.md#listwebhooks) - List all webhooks
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -83,7 +103,7 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { Shippo } from "shippo";
-import * as errors from "shippo/models/errors";
+import { SDKValidationError } from "shippo/models/errors";
 
 const shippo = new Shippo();
 
@@ -93,7 +113,7 @@ async function run() {
         result = await shippo.getExample("<value>");
     } catch (err) {
         switch (true) {
-            case err instanceof errors.SDKValidationError: {
+            case err instanceof SDKValidationError: {
                 // Validation errors can be pretty-printed
                 console.error(err.pretty());
                 // Raw value may also be inspected

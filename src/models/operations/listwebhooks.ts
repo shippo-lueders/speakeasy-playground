@@ -6,48 +6,14 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 import * as z from "zod";
 
-export type GetExampleRequest = {
-    /**
-     * The number of results to return per page (max 100)
-     */
-    headerParam?: string | undefined;
-};
-
-export type GetExampleResponse = {
+export type ListWebhooksResponse = {
     httpMeta: components.HTTPMetadata;
     exampleBody?: components.ExampleBody | undefined;
 };
 
 /** @internal */
-export namespace GetExampleRequest$ {
-    export const inboundSchema: z.ZodType<GetExampleRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            header_param: z.string().optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                header_param: "headerParam",
-            });
-        });
-
-    export type Outbound = {
-        header_param?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetExampleRequest> = z
-        .object({
-            headerParam: z.string().optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                headerParam: "header_param",
-            });
-        });
-}
-
-/** @internal */
-export namespace GetExampleResponse$ {
-    export const inboundSchema: z.ZodType<GetExampleResponse, z.ZodTypeDef, unknown> = z
+export namespace ListWebhooksResponse$ {
+    export const inboundSchema: z.ZodType<ListWebhooksResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
             ExampleBody: components.ExampleBody$.inboundSchema.optional(),
@@ -64,7 +30,7 @@ export namespace GetExampleResponse$ {
         ExampleBody?: components.ExampleBody$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetExampleResponse> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListWebhooksResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
             exampleBody: components.ExampleBody$.outboundSchema.optional(),
