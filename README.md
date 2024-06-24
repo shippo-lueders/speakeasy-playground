@@ -46,12 +46,10 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { Shippo } from "shippo";
 
+const shippo = new Shippo();
+
 async function run() {
-    const sdk = new Shippo();
-
-    const headerParam = "<value>";
-
-    const result = await sdk.getExample(headerParam);
+    const result = await shippo.getExample("<value>");
 
     // Handle the result
     console.log(result);
@@ -87,14 +85,12 @@ Validation errors can also occur when either method arguments or data returned f
 import { Shippo } from "shippo";
 import * as errors from "shippo/models/errors";
 
+const shippo = new Shippo();
+
 async function run() {
-    const sdk = new Shippo();
-
-    const headerParam = "<value>";
-
     let result;
     try {
-        result = await sdk.getExample(headerParam);
+        result = await shippo.getExample("<value>");
     } catch (err) {
         switch (true) {
             case err instanceof errors.SDKValidationError: {
@@ -133,14 +129,12 @@ You can override the default server globally by passing a server index to the `s
 ```typescript
 import { Shippo } from "shippo";
 
+const shippo = new Shippo({
+    serverIdx: 0,
+});
+
 async function run() {
-    const sdk = new Shippo({
-        serverIdx: 0,
-    });
-
-    const headerParam = "<value>";
-
-    const result = await sdk.getExample(headerParam);
+    const result = await shippo.getExample("<value>");
 
     // Handle the result
     console.log(result);
@@ -158,14 +152,12 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```typescript
 import { Shippo } from "shippo";
 
+const shippo = new Shippo({
+    serverURL: "https://example.com",
+});
+
 async function run() {
-    const sdk = new Shippo({
-        serverURL: "https://example.com",
-    });
-
-    const headerParam = "<value>";
-
-    const result = await sdk.getExample(headerParam);
+    const result = await shippo.getExample("<value>");
 
     // Handle the result
     console.log(result);
@@ -206,7 +198,7 @@ const httpClient = new HTTPClient({
 
 httpClient.addHook("beforeRequest", (request) => {
   const nextRequest = new Request(request, {
-    signal: request.signal || AbortSignal.timeout(5000);
+    signal: request.signal || AbortSignal.timeout(5000)
   });
 
   nextRequest.headers.set("x-custom-header", "custom value");

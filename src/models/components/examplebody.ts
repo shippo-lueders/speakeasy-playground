@@ -10,31 +10,15 @@ export type ExampleBody = {
 
 /** @internal */
 export namespace ExampleBody$ {
-    export type Inbound = {
-        field?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ExampleBody, z.ZodTypeDef, Inbound> = z
-        .object({
-            field: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.field === undefined ? null : { field: v.field }),
-            };
-        });
+    export const inboundSchema: z.ZodType<ExampleBody, z.ZodTypeDef, unknown> = z.object({
+        field: z.string().optional(),
+    });
 
     export type Outbound = {
         field?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ExampleBody> = z
-        .object({
-            field: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.field === undefined ? null : { field: v.field }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ExampleBody> = z.object({
+        field: z.string().optional(),
+    });
 }

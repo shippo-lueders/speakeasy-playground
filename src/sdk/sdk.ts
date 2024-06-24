@@ -4,12 +4,11 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
-import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
 export class Shippo extends ClientSDK {
@@ -48,7 +47,7 @@ export class Shippo extends ClientSDK {
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -63,7 +62,7 @@ export class Shippo extends ClientSDK {
 
         headers$.set(
             "header_param",
-            enc$.encodeSimple("header_param", payload$.header_param, {
+            encodeSimple$("header_param", payload$.header_param, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -71,31 +70,24 @@ export class Shippo extends ClientSDK {
         const context = { operationID: "GetExample", oAuth2Scopes: [], securitySource: null };
 
         const doOptions = { context, errorCodes: ["4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             { method: "GET", path: path$, headers: headers$, query: query$, body: body$ },
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
-        } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
-        }
+        const [result$] = await this.matcher<operations.GetExampleResponse>()
+            .json(200, operations.GetExampleResponse$, { key: "ExampleBody" })
+            .fail(["4XX", "5XX"])
+            .match(response, request$, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.GetExampleResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     async createExample(
@@ -110,14 +102,14 @@ export class Shippo extends ClientSDK {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
             (value$) => operations.CreateExampleRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.ExampleBody, { explode: true });
+        const body$ = encodeJSON$("body", payload$.ExampleBody, { explode: true });
 
         const path$ = this.templateURLComponent("/example")();
 
@@ -125,7 +117,7 @@ export class Shippo extends ClientSDK {
 
         headers$.set(
             "header_param",
-            enc$.encodeSimple("header_param", payload$.header_param, {
+            encodeSimple$("header_param", payload$.header_param, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -133,30 +125,23 @@ export class Shippo extends ClientSDK {
         const context = { operationID: "CreateExample", oAuth2Scopes: [], securitySource: null };
 
         const doOptions = { context, errorCodes: ["4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
+            context,
             { method: "POST", path: path$, headers: headers$, query: query$, body: body$ },
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchStatusCode(response, 201)) {
-            // fallthrough
-        } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
-        }
+        const [result$] = await this.matcher<operations.CreateExampleResponse>()
+            .json(201, operations.CreateExampleResponse$, { key: "ExampleBody" })
+            .fail(["4XX", "5XX"])
+            .match(response, request$, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.CreateExampleResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 }
