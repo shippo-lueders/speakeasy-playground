@@ -71,3 +71,16 @@ components:
       properties:
         field:
           type: string
+webhooks:
+  newPet:
+    post:
+      operationId: newPetEvent
+      requestBody:
+        description: Information about a new pet in the system
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExampleBody"
+      responses:
+        "200":
+          description: Return a 200 status
