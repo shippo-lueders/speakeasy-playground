@@ -71,16 +71,22 @@ components:
       properties:
         field:
           type: string
+    WebhookBody:
+      type: object
+      properties:
+        payload:
+          type: string
 webhooks:
   newPet:
     post:
       operationId: newPetEvent
       requestBody:
+        required: true
         description: Information about a new pet in the system
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ExampleBody"
+              $ref: "#/components/schemas/WebhookBody"
       responses:
         "200":
           description: Return a 200 status

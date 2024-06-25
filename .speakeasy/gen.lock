@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6dfd6e8b-0984-4a77-b9b7-6a03dbb13de8
 management:
-  docChecksum: f3b0d53f0cd6525cabe6b350fbdea4b8
+  docChecksum: a17f512bac95c37dd2b231bac5f053dc
   docVersion: "1"
   speakeasyVersion: 1.315.1
   generationVersion: 2.352.0
-  releaseVersion: 0.5.0
-  configChecksum: 9d6d69a8a03ba9518d59f968d3e916fa
+  releaseVersion: 0.5.2
+  configChecksum: 848e6b4f009b9c8e10e04df529796b20
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -52,6 +52,7 @@ generatedFiles:
   - src/models/operations/listwebhooks.ts
   - src/models/components/examplebody.ts
   - src/models/components/httpmetadata.ts
+  - src/models/components/webhookbody.ts
   - src/models/webhooks/newpetevent.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
@@ -66,6 +67,7 @@ generatedFiles:
   - docs/models/operations/listwebhooksresponse.md
   - docs/models/components/examplebody.md
   - docs/models/components/httpmetadata.md
+  - docs/models/components/webhookbody.md
   - docs/models/webhooks/newpeteventresponse.md
   - docs/sdks/shippo/README.md
   - docs/sdks/webhooks/README.md

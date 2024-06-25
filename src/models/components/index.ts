@@ -4,3 +4,4 @@
 
 export * from "./examplebody.js";
 export * from "./httpmetadata.js";
+export * from "./webhookbody.js";
