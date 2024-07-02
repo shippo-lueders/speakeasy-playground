@@ -5,12 +5,13 @@ import dataclasses
 from .examplebody import ExampleBody
 from dataclasses_json import Undefined, dataclass_json
 from shippo import utils
-from typing import List, Optional
+from typing import Callable, List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ExamplePaginatedList:
+    next: Callable[[], Optional[ExamplePaginatedList]] = dataclasses.field()
     next: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('next'), 'exclude': lambda f: f is None }})
     results: Optional[List[ExampleBody]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('results'), 'exclude': lambda f: f is None }})
     
