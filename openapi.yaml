@@ -55,9 +55,7 @@ components:
       content:
         application/json:
           schema:
-            items:
-              $ref: '#/components/schemas/ExampleBody'
-            type: array
+            $ref: '#/components/schemas/ExamplePaginatedList'
     exampleResponse:
       description: ''
       content:
@@ -65,6 +63,14 @@ components:
           schema:
             $ref: '#/components/schemas/ExampleBody'
   schemas:
+    ExamplePaginatedList:
+      properties:
+        next:
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ExampleBody'
+          type: array
     ExampleBody:
       type: object
       properties:
