@@ -71,6 +71,14 @@ components:
           items:
             $ref: '#/components/schemas/ExampleBody'
           type: array
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: results
+            in: requestBody
+            type: cursor
+        outputs:
+          nextCursor: $.next
     ExampleBody:
       type: object
       properties:
