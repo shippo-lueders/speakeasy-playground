@@ -34,6 +34,7 @@ import shippo
 
 s = shippo.Shippo()
 
+
 res = s.list(header_param='<value>')
 
 if res is not None:
@@ -73,6 +74,7 @@ s = shippo.Shippo()
 res = None
 try:
     res = s.list(header_param='<value>')
+
 except errors.SDKError as e:
     # handle exception
     raise(e)
@@ -104,6 +106,7 @@ s = shippo.Shippo(
     server_idx=0,
 )
 
+
 res = s.list(header_param='<value>')
 
 if res is not None:
@@ -122,6 +125,7 @@ import shippo
 s = shippo.Shippo(
     server_url="https://example.com",
 )
+
 
 res = s.list(header_param='<value>')
 

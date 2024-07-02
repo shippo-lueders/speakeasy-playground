@@ -6,7 +6,7 @@ from .utils.retries import RetryConfig
 from shippo import utils
 from shippo._hooks import AfterErrorContext, AfterSuccessContext, BeforeRequestContext, HookContext, SDKHooks
 from shippo.models import components, errors, operations
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 class Shippo:
 
@@ -58,7 +58,7 @@ class Shippo:
         self.sdk_configuration.__dict__['_hooks'] = hooks
 
 
-    def list(self, header_param: Optional[str] = None) -> List[components.ExampleBody]:
+    def list(self, header_param: Optional[str] = None) -> components.ExamplePaginatedList:
         hook_ctx = HookContext(operation_id='List', oauth2_scopes=[], security_source=None)
         request = operations.ListRequest(
             header_param=header_param,
@@ -99,7 +99,7 @@ class Shippo:
         if http_res.status_code == 200:
             # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
-                out = utils.unmarshal_json(http_res.text, Optional[List[components.ExampleBody]])
+                out = utils.unmarshal_json(http_res.text, Optional[components.ExamplePaginatedList])
                 return out
             
             content_type = http_res.headers.get('Content-Type')
